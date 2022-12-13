@@ -1,0 +1,23 @@
+<section *ngIf="showModal">
+  <div class="card__modal" id="card__modal">
+    <div class="card__modal__header">
+      <p class="card__modal__header__tittle">¿Cómo ubico el número de serie?</p>
+      <p class="card__modal__header__icon" (click)="closeModal()">X</p>
+    </div>
+    <div class="card__modal__content">
+      <div class="card__modal__content__leyend">
+        <p class="card__modal__content__leyend__title">Carnet de identidad nuevo</p>
+        <img src="{{urlImage}}carnet_new.png" alt="" lazy>
+      </div>
+      <div class="card__modal__content__leyend">
+        <p class="card__modal__content__leyend__title">Carnet de identidad antiguo</p>
+        <img src="{{urlImage}}carnet_old.png" alt="" lazy>
+      </div>
+    </div>
+    <div class="card__modal__button">
+      <button class="button-secondary" (click)="closeModal()">VOLVER</button>
+    </div>
+  </div>
+</section>
+
+

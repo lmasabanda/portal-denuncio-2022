@@ -1,0 +1,56 @@
+section{
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: #F1F3F2;
+  display: flex;
+  justify-content: center;
+  border-top: 4px solid rgb(212, 212, 212);
+}
+
+.card__menu__denuncia{
+  background-color: white;
+  padding: 3.1rem 24rem 6.5rem 2.5rem;
+  border-left: 10px solid var(--primary-color);
+  height: fit-content;
+  width: fit-content;
+  min-width: 10px;
+  margin-top: 5rem;
+}
+
+.card__menu__denuncia__title{
+  font-weight: 900;
+  font-size: 1.3em;
+  margin-bottom: 2.1rem;
+}
+
+.card__menu__denuncia__item{
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: .8rem;
+  justify-content: space-between;
+  gap: 4em;
+  cursor: pointer;
+}
+
+.card__menu__denuncia__item > p{
+  color: var(--primary-color);
+  font-size: .8em;
+  font-weight: 700;
+}
+
+.card__menu__denuncia__item:last-of-type{
+  margin-bottom: 2rem;
+}
+
+.bi-chevron-right{
+  color: var(--primary-color);
+}
+
+span{
+  font-weight: 700;
+}
+
+.help__leyend{
+  font-size: .9em;
+}

@@ -6,9 +6,13 @@
   padding: 3.8rem 7rem;
 }
 
-.footer__information > p:first-of-type{
+.footer__information > .footer__information__title > p:first-of-type{
   font-size: 1.4em;
-  padding-bottom: 1rem;
+  font-weight: 500;
+}
+
+.footer__information__title{
+  margin-bottom: .8rem;
 }
 
 .footer__information > p:not(:first-of-type){
@@ -26,6 +30,16 @@
 .social__media > a > img{
   width: 25px;
   filter: invert(34%) sepia(3%) saturate(7%) hue-rotate(72deg) brightness(102%) contrast(94%);
+}
+
+.footer__information__title{
+  display: flex;
+  align-items: center;
+  gap: .8em;
+}
+
+.image__metlife{
+  width: 100px;
 }
 
 @media screen and (max-width: 500px){

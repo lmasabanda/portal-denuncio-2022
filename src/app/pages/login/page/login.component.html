@@ -1,0 +1,42 @@
+<main>
+  <figure>
+    <!-- <img src="{{urlImage}}" alt=""> -->
+  </figure>
+
+  <section>
+    <div class="section__login">
+      <figure class="header__image">
+        <img src="{{urlImage}}" alt="">
+      </figure>
+      <div class="header__tittle">
+        <p>Iniciar sesión en tu cuenta</p>
+      </div>
+      <div class="header__leyend">
+        <p>Ingresa tu usuario y contraseña</p>
+      </div>
+      <div class="header__login__credentials">
+        <div class="inputBox">
+          <input type="text" required="required">
+          <span>RUT</span>
+        </div>
+        <div class="inputBox">
+          <input type="text" required="required">
+          <span>Número de serie</span>
+        </div>
+      </div>
+
+      <div class="number__serie">
+        <p class="number__serie__text" (click)="openModal()">¿Cómo encuentro el número de serie?</p>
+      </div>
+
+      <div class="recaptcha">
+        <p>Recaptcha</p>
+      </div>
+      <button class="button-primary" (click)="login()">INGRESAR</button>
+    </div>
+  </section>
+</main>
+
+<app-modal-number-serie [showModal]="showModal"></app-modal-number-serie>
+
+<app-footer></app-footer>
