@@ -1,0 +1,35 @@
+.footer__information{
+  background-color: #F2F2F2;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 3.8rem 7rem;
+}
+
+.footer__information > p:first-of-type{
+  font-size: 1.4em;
+  padding-bottom: 1rem;
+}
+
+.footer__information > p:not(:first-of-type){
+  font-size: .9em;
+  padding: .3rem 0rem;
+}
+
+.social__media{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: .8em;
+  padding: 2rem 7rem;
+}
+
+.social__media > a > img{
+  width: 25px;
+  filter: invert(34%) sepia(3%) saturate(7%) hue-rotate(72deg) brightness(102%) contrast(94%);
+}
+
+@media screen and (max-width: 500px){
+  .footer__information{
+    padding: 2.5rem;
+  }
+}
