@@ -1,3 +1,9 @@
 <app-header></app-header>
 
-<app-card-menu-denuncias></app-card-menu-denuncias>
+<ng-template [ngIf]="isUrlMenu()" [ngIfElse]="actionDenuncio">
+  <app-card-menu-denuncias></app-card-menu-denuncias>
+</ng-template>
+
+<ng-template #actionDenuncio>
+  <router-outlet></router-outlet>
+</ng-template>

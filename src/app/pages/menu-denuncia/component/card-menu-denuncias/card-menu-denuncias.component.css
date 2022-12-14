@@ -13,7 +13,6 @@ section{
   border-left: 10px solid var(--primary-color);
   height: fit-content;
   width: fit-content;
-  min-width: 10px;
   margin-top: 5rem;
 }
 
@@ -53,4 +52,20 @@ span{
 
 .help__leyend{
   font-size: .9em;
+}
+
+@media screen and (max-width: 900px){
+  .card__menu__denuncia{
+    width: 80%;
+  }
+
+  .card__menu__denuncia{
+    padding: 3.1rem 10rem 6.5rem 2.5rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .card__menu__denuncia{
+    padding: 3rem 1.5rem 5rem 1.5rem;
+  }
 }

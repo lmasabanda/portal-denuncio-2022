@@ -51,3 +51,19 @@ section{
   align-items: center;
   margin-top: 1.8rem;
 }
+
+@media screen and (max-width: 600px){
+  .card__modal__content{
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card__modal__header__tittle{
+    margin-top: 1rem;
+  }
+
+  .card__modal__content__leyend > img {
+    width: 180px;
+  }
+}

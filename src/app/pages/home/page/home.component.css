@@ -33,11 +33,12 @@ span {
 
 .header__tittle{
   margin-bottom: .8rem;
+  font-weight: 900;
 }
 
 .header__image img{
-  background-color: orange;
-  margin-bottom: 2.3rem;
+  margin-bottom: 1.6rem;
+  width: 210px;
 }
 
 .section__home{
@@ -53,6 +54,11 @@ span {
 
 .leyend > p:last-child{
   margin-bottom: 2.3rem;
+}
+
+.button-primary{
+  max-width: 270px;
+  min-width: 270px;
 }
 
 

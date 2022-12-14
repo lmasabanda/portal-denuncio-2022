@@ -21,6 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.router.navigate(['menu-denuncia']);
+    this.router.navigate(['menu-denuncio']);
   }
 }

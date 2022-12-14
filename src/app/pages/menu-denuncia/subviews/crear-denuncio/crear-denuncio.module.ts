@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CrearDenuncioComponent } from './page/crear-denuncio/crear-denuncio.component';
 
-
+import { CrearDenuncioRoutingModule } from './crear-denuncio-routing.module';
+import { CrearDenuncioComponent } from './page/crear-denuncio.component';
 
 @NgModule({
   declarations: [
     CrearDenuncioComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CrearDenuncioRoutingModule
   ]
 })
 export class CrearDenuncioModule { }

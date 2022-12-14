@@ -4,7 +4,7 @@ nav{
   align-items: center;
   width: 100%;
   height: 70px;
-  /* padding: 0rem 2%; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 nav > figure{
@@ -29,4 +29,20 @@ nav > figure > img{
 .close__session > p {
   font-size: .75em;
   font-weight: 800;
+}
+
+@media screen and (max-width: 900px){
+  nav > figure > img{
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  nav > figure > img{
+    width: 150px;
+  }
+
+  .close__session{
+    padding: 0rem 1rem ;
+  }
 }

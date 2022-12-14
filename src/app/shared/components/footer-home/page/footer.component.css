@@ -16,7 +16,7 @@
 }
 
 .footer__information > p:not(:first-of-type){
-  font-size: .9em;
+  font-size: 1em;
   padding: .3rem 0rem;
 }
 
@@ -39,11 +39,16 @@
 }
 
 .image__metlife{
-  width: 100px;
+  width: 130px;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 600px){
   .footer__information{
     padding: 2.5rem;
+  }
+
+  .social__media{
+    justify-content: center;
+    align-items: center;
   }
 }

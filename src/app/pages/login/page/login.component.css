@@ -127,6 +127,11 @@ section > .section__login > .header__tittle p{
   width: min-content;
 }
 
+.button-primary{
+  max-width: 270px;
+  min-width: 270px;
+}
+
 @media screen and (max-width: 900px){
   main {
     padding: 0rem;

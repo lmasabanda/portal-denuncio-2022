@@ -21,8 +21,6 @@
   font-size: .8em;
   border: none;
   background-color: #F8772F;
-  max-width: 270px;
-  min-width: 270px;
   border-radius: 3px;
   font-weight: 600;
   color: rgb(243, 243, 243);
@@ -45,4 +43,10 @@
 .button-secondary:hover{
   color: #FB5B1D;
   border: 1px solid #FB5B1D;
+}
+
+@media screen and (max-width: 600px){
+  .button-secondary{
+    width: 100%;
+  }
 }
