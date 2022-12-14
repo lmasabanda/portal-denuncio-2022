@@ -18,24 +18,24 @@
         <p class="content__crear__denuncio__item__title active__step__text">Información del asegurado y siniestro</p>
         <div>
             <form class="content__crear__denuncio__item__form">
-              <div>
-                <input type="date" name="" id="">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__normal" type="date" name="" id="">
                 <span>¿Cuándo ocurrió el siniestro?</span>
               </div>
-              <div>
-                <input type="text" name="" id="">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__normal" type="text" name="" id="">
                 <span>RUT asegurado</span>
               </div>
-              <div>
-                <input type="text" name="" id="">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__large" type="text" name="" id="">
                 <span>Nombres asegurados</span>
               </div>
-              <div>
-                <input type="text" name="" id="">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__large" type="text" name="" id="">
                 <span>Apellidos asegurados</span>
               </div>
-              <div>
-                <select name="" id="">
+              <div class="content__crear__denuncio__item__form__select">
+                <select class="input__large" name="" id="">
                   <option value="">option1</option>
                   <option value="">option2</option>
                   <option value="">option3</option>
@@ -43,8 +43,8 @@
                 </select>
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
-              <div>
-                <select name="" id="">
+              <div class="content__crear__denuncio__item__form__select">
+                <select class="input__large" name="" id="">
                   <option value="">option1</option>
                   <option value="">option2</option>
                   <option value="">option3</option>
@@ -52,8 +52,8 @@
                 </select>
                 <span>¿Cuál es la cobertura que quiere utilizar?</span>
               </div>
-              <div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+              <div class="content__crear__denuncio__item__form__input">
+                <textarea class="input__large" name="" id="" cols="30" rows="8"></textarea>
                 <span>Explique las causas del siniestro</span>
               </div>
             </form>
@@ -70,59 +70,69 @@
       </div>
       <div class="content__crear__denuncio__item__section">
         <p class="content__crear__denuncio__item__title inactive__step__text">Información solicitante</p>
-        <div class="content__crear__denuncio__item__form">
-          <form>
-            <div class="content__crear__denuncio__item__form__subtitle">
-              <p>¿El solicitante es el mismo asegurado?</p>
+        <div >
+          <form class="content__crear__denuncio__item__form">
+            <div class="content__crear__denuncio__item__form__tittle__radiobutton">
+              <p class="content__crear__denuncio__item__form__tittle">¿El solicitante es el mismo asegurado?</p>
+              <div class="content__crear__denuncio__item__form__radiobutton">
+                <article class="radio-item">
+                  <input type="radio" id="no_solicitante" name="contact">
+                  <label for="no_solicitante">No, el solicitante es distinto al asegurado</label>
+                </article>
+                <article class="radio-item">
+                  <input type="radio" id="solicitante" name="contact">
+                  <label for="solicitante">Si, son la misma persona</label>
+                </article>
+              </div>
             </div>
-            <div class="content__crear__denuncio__item__form__radiobutton">
-              <input type="radio" name="contact"> No, el solicitante es distinto al asegurado
-              <input type="radio" name="contact"> Si, son la misma persona
-            </div>
-            <div>
-              <input type="text" name="" id="">
+            <div class="content__crear__denuncio__item__form__input">
+              <input class="input__normal" type="text" name="" id="">
               <span>RUT solicitante</span>
             </div>
-            <div>
-              <input type="text" name="" id="">
+            <div class="content__crear__denuncio__item__form__input">
+              <input class="input__large" type="text" name="" id="">
               <span>Nombres solicitante</span>
             </div>
-            <div>
-              <input type="text" name="" id="">
+            <div class="content__crear__denuncio__item__form__input">
+              <input class="input__large" type="text" name="" id="">
               <span>Apellidos solicitante</span>
             </div>
-            <div>
-              <input type="text" name="" id="">
+            <div class="content__crear__denuncio__item__form__input">
+              <input class="input__normal" type="text" name="" id="">
               <span>Email solicitante</span>
             </div>
-            <div>
-              <div>
-                <input type="text" name="" id="">
+            <div class="group__input__text">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__normal" type="text" name="" id="">
                 <span>Celular solicitante</span>
               </div>
-              <div>
-                <input type="text" name="" id="">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__normal" type="text" name="" id="">
                 <span>Teléfono solicitante</span>
               </div>
             </div>
             <div class="content__crear__denuncio__item__form__subtitle">
-              <p>Dirección solicitante</p>
+              <p class="content__crear__denuncio__item__form__tittle">Dirección solicitante</p>
             </div>
-            <div>
-              <div>
-                <input type="text" name="" id="">
+            <main class="group__input__text">
+              <div class="content__crear__denuncio__item__form__input">
+                <input class="input__normal" type="text" name="" id="">
                 <span>Calle</span>
               </div>
-              <div>
-                <input type="text" name="" id="">
-                <span>Número</span>
-              </div>
-              <div>
-                <input type="text" name="" id="">
-                <span>Dept / Block</span>
-              </div>
-              <div>
-                <select name="" id="">
+              <article class="group__input__text">
+                <div class="content__crear__denuncio__item__form__input">
+                  <input class="input__small" type="text" name="" id="">
+                  <span>Número</span>
+                </div>
+                <div class="content__crear__denuncio__item__form__input">
+                  <input class="input__small" type="text" name="" id="">
+                  <span>Dept / Block</span>
+                </div>
+              </article>
+            </main>
+            <main class="group__input__text">
+              <div class="content__crear__denuncio__item__form__select">
+                <select class="input__normal" name="" id="">
                   <option value="">option1</option>
                   <option value="">option2</option>
                   <option value="">option3</option>
@@ -130,8 +140,8 @@
                 </select>
                 <span>Región</span>
               </div>
-              <div>
-                <select name="" id="">
+              <div class="content__crear__denuncio__item__form__select">
+                <select class="input__normal" name="" id="">
                   <option value="">option1</option>
                   <option value="">option2</option>
                   <option value="">option3</option>
@@ -139,8 +149,8 @@
                 </select>
                 <span>Comuna</span>
               </div>
-              <div>
-                <select name="" id="">
+              <div class="content__crear__denuncio__item__form__select">
+                <select class="input__normal" name="" id="">
                   <option value="">option1</option>
                   <option value="">option2</option>
                   <option value="">option3</option>
@@ -148,7 +158,7 @@
                 </select>
                 <span>Ciudad</span>
               </div>
-            </div>
+            </main>
           </form>
         </div>
         <div class="content__crear__denuncio__item__buttons">
@@ -164,38 +174,43 @@
       </div>
       <div class="content__crear__denuncio__item__section">
         <p class="content__crear__denuncio__item__title">Datos de cuenta bancaria para reembolso</p>
-        <div class="content__crear__denuncio__item__form">
-          <form>
-            <div class="content__crear__denuncio__item__form__subtitle">
-              <p>Tipo de cuenta</p>
-            </div>
+        <form class="content__crear__denuncio__item__form">
+          <div class="content__crear__denuncio__item__form__tittle__radiobutton">
+            <p class="content__crear__denuncio__item__form__tittle">Tipo de cuenta</p>
             <div class="content__crear__denuncio__item__form__radiobutton">
-              <input type="radio" name="typeAccount"> Cuenta corriente
-              <input type="radio" name="typeAccount"> Cuenta vista o ahorro
+              <article class="radio-item">
+                <input type="radio" id="cuenta__corriente" name="typeAccount">
+                <label for="cuenta__corriente">Cuenta corriente</label>
+              </article>
+              <article class="radio-item">
+                <input type="radio" id="cuenta__ahorro" name="typeAccount">
+                <label for="cuenta__ahorro">Cuenta vista o ahorro</label>
+              </article>
             </div>
-            <div>
-              <select name="" id="">
-                <option value="">option1</option>
-                <option value="">option2</option>
-                <option value="">option3</option>
-                <option value="">option3</option>
-              </select>
-              <span>Banco</span>
-            </div>
-            <div>
-              <input type="text" name="" id="">
-              <span>Número de cuenta</span>
-            </div>
-            <div>
-              <input type="text" name="" id="">
-              <span>Nombre titular cuenta bancaria</span>
-            </div>
-            <div>
-              <input type="text" name="" id="">
-              <span>RUT titular</span>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="content__crear__denuncio__item__form__select">
+            <select class="input__normal" name="" id="">
+              <option value="">option1</option>
+              <option value="">option2</option>
+              <option value="">option3</option>
+              <option value="">option3</option>
+            </select>
+            <span>Banco</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input class="input__normal" type="text" name="" id="">
+            <span>Número de cuenta</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input class="input__large" type="text" name="" id="">
+            <span>Nombre titular cuenta bancaria</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input class="input__normal" type="text" name="" id="">
+            <span>RUT titular</span>
+          </div>
+        </form>
+
         <div class="content__crear__denuncio__item__buttons">
           <button class="button-secondary">VOLVER</button>
           <button class="button-primary">SIGUIENTE</button>
@@ -208,53 +223,57 @@
         <div class="content__crear__denuncio__item__step__box inactive__step__box"></div>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__title">Cargar documentos</p>
+        <p class="content__crear__denuncio__item__section__title">Cargar documentos</p>
         <p class="content__crear__denuncio__item__subtitle">
           Su solicitud requiere cargar 4 documentos, todos son obligatorios. Recuerde guardar los originales.
         </p>
-        <div class="content__crear__denuncio__item__form">
+        <main class="content__crear__denuncio__item__form__box">
           <div class="content__crear__denuncio__item__form__document">
-            <div>
-              <span>BOX</span>
+            <div class="content__crear__denuncio__item__form__document__details">
+              <span></span>
               <p>Nombre del documento</p>
               <p>Más información</p>
             </div>
-            <div>
-              <input type="file" name="" id="">
+            <div class="input__file">
+              <input type="file" name="" id="file__one">
+              <label for="file__one">Subir archivo</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
-            <div>
-              <span>BOX</span>
+            <div class="content__crear__denuncio__item__form__document__details">
+              <span></span>
               <p>Nombre del documento</p>
               <p>Más información</p>
             </div>
-            <div>
-              <input type="file" name="" id="">
+            <div class="input__file">
+              <input type="file" name="" id="file__two">
+              <label for="file__two">Subir archivo</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
-            <div>
-              <span>BOX</span>
+            <div class="content__crear__denuncio__item__form__document__details">
+              <span></span>
               <p>Nombre del documento</p>
               <p>Más información</p>
             </div>
-            <div>
-              <input type="file" name="" id="">
+            <div class="input__file">
+              <input type="file" name="" id="file__tree">
+              <label for="file__tree">Subir archivo</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
-            <div>
-              <span>BOX</span>
+            <div class="content__crear__denuncio__item__form__document__details">
+              <span></span>
               <p>Nombre del documento</p>
               <p>Más información</p>
             </div>
-            <div>
-              <input type="file" name="" id="">
+            <div class="input__file">
+              <input type="file" name="" id="file__four">
+              <label for="file__four">Subir archivo</label>
             </div>
           </div>
-        </div>
-        <div class="content__crear__denuncio__item__buttons">
+        </main>
+        <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 6rem;">
           <button class="button-secondary">VOLVER</button>
           <button class="button-primary">SIGUIENTE</button>
         </div>
@@ -265,22 +284,23 @@
         <p class="inactive__step">5</p>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__title">Resumen solicitud</p>
-        <p class="content__crear__denuncio__item__title">Envío de antecedentes para denuncio de cobertura por fallecimiento</p>
+        <p class="content__crear__denuncio__item__section__title">Resumen solicitud</p>
+        <p class="content__crear__denuncio__item__section__subtitle">Envío de antecedentes para denuncio de cobertura por fallecimiento</p>
         <div class="content__crear__denuncio__item__resumen">
           <p><span>Asegurado:</span> Nombre del asegurado (RUT #####)</p>
           <p><span>Póliza:</span> 727828 Nombre-Producto</p>
           <p><span>Solicitante:</span> Nombre del solicitante (RUT #####)</p>
           <p><span>cobertura:</span> Nombre de cobertura</p>
-          <p><span>Documentos cargados:</span></p>
-          <div>
-            <ul>
-              <li>Documento uno</li>
-              <li>Documento dos</li>
-            </ul>
-          </div>
         </div>
-        <div class="content__crear__denuncio__item__buttons">
+        <div class="title__document__charge">
+          <p><span>Documentos cargados:</span></p>
+          <ul class="list__documents__charge">
+            <li>Documento uno</li>
+            <li>Documento dos</li>
+            <li>Documento tres</li>
+          </ul>
+        </div>
+        <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 10rem;">
           <button class="button-secondary">VOLVER</button>
           <button class="button-primary">ENVIAR DENUNCIO</button>
         </div>
