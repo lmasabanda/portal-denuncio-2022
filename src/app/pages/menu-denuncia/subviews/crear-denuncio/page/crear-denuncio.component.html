@@ -9,7 +9,7 @@
   </div>
 
   <div class="content__crear__denuncio">
-    <div class="content__crear__denuncio__item">
+    <div id="step1" class="content__crear__denuncio__item">
       <div class="content__crear__denuncio__item__step">
         <p class="active__step">1</p>
         <div class="content__crear__denuncio__item__step__box active__step__box"></div>
@@ -58,20 +58,26 @@
               </div>
             </form>
         </div>
-        <div class="content__crear__denuncio__item__buttons">
-          <button class="button-primary">SIGUIENTE</button>
+        <div class="content__crear__denuncio__item__buttons" >
+          <a [routerLink]="['.']" class="button-primary" fragment="step2" (click)="nextStep('item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">SIGUIENTE</a>
         </div>
       </div>
     </div>
     <div class="line"></div>
 
-    <div class="content__crear__denuncio__item">
+    <div #step2 id="step2" class="content__crear__denuncio__item">
       <div class="content__crear__denuncio__item__step">
-        <p class="inactive__step">2</p>
-        <div class="content__crear__denuncio__item__step__box line__up inactive__step__box"></div>
+        <p id="number__2" class="inactive__step">2</p>
+        <div id="number__box__2" class="content__crear__denuncio__item__step__box line__up inactive__step__box"></div>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__title inactive__step__text">Información solicitante</p>
+        <div id="item__inactive__2" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__2" class="content__crear__denuncio__item__title inactive__step__text">Información solicitante</p>
         <div >
           <form class="content__crear__denuncio__item__form">
             <div class="content__crear__denuncio__item__form__tittle__radiobutton">
@@ -164,20 +170,27 @@
           </form>
         </div>
         <div class="content__crear__denuncio__item__buttons">
-          <button class="button-secondary">VOLVER</button>
-          <button class="button-primary">SIGUIENTE</button>
+          <a [routerLink]="['.']" class="button-secondary" fragment="step1" (click)="backStep('item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">VOLVER</a>
+          <a [routerLink]="['.']" class="button-primary" fragment="step3" (click)="nextStep('item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">SIGUIENTE</a>
         </div>
       </div>
     </div>
+
     <div class="line"></div>
 
-    <div class="content__crear__denuncio__item">
+    <div id="step3" class="content__crear__denuncio__item">
       <div class="content__crear__denuncio__item__step">
-        <p class="inactive__step">3</p>
-        <div class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -8px;"></div>
+        <p id="number__3" class="inactive__step">3</p>
+        <div id="number__box__3" class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -8px;"></div>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__title">Datos de cuenta bancaria para reembolso</p>
+        <div id="item__inactive__3" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__3" class="content__crear__denuncio__item__title inactive__step__text" >Datos de cuenta bancaria para reembolso</p>
         <form class="content__crear__denuncio__item__form">
           <div class="content__crear__denuncio__item__form__tittle__radiobutton">
             <p class="content__crear__denuncio__item__form__tittle">Tipo de cuenta</p>
@@ -216,20 +229,26 @@
         </form>
 
         <div class="content__crear__denuncio__item__buttons">
-          <button class="button-secondary">VOLVER</button>
-          <button class="button-primary">SIGUIENTE</button>
+          <a [routerLink]="['.']" class="button-secondary" fragment="step2" (click)="backStep('item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">VOLVER</a>
+          <a [routerLink]="['.']" class="button-primary" fragment="step4" (click)="nextStep('item__inactive__4', 'number__4', 'number__box__4', 'number__title__4')">SIGUIENTE</a>
         </div>
       </div>
     </div>
     <div class="line"></div>
 
-    <div class="content__crear__denuncio__item">
+    <div id="step4" class="content__crear__denuncio__item">
       <div class="content__crear__denuncio__item__step">
-        <p class="inactive__step">4</p>
-        <div class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -5px;"></div>
+        <p id="number__4" class="inactive__step">4</p>
+        <div id="number__box__4" class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -5px;"></div>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__section__title">Cargar documentos</p>
+        <div id="item__inactive__4" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__4" class="content__crear__denuncio__item__section__title inactive__step__text">Cargar documentos</p>
         <p class="content__crear__denuncio__item__subtitle">
           Su solicitud requiere cargar 4 documentos, todos son obligatorios. Recuerde guardar los originales.
         </p>
@@ -288,20 +307,26 @@
           </div>
         </main>
         <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 4rem;">
-          <button class="button-secondary">VOLVER</button>
-          <button class="button-primary">SIGUIENTE</button>
+          <a [routerLink]="['.']" class="button-secondary" fragment="step3" (click)="backStep('item__inactive__4', 'number__4', 'number__box__4', 'number__title__4')">VOLVER</a>
+          <a [routerLink]="['.']" class="button-primary" fragment="step5" (click)="nextStep('item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">SIGUIENTE</a>
         </div>
       </div>
     </div>
     <div class="line"></div>
 
-    <div class="content__crear__denuncio__item">
+    <div id="step5" class="content__crear__denuncio__item">
       <div class="content__crear__denuncio__item__step">
-        <p class="inactive__step item__box">5</p>
-        <div class="content__crear__denuncio__item__step__box line__up "></div>
+        <p id="number__5" class="inactive__step item__box">5</p>
+        <div id="number__box__5" class="content__crear__denuncio__item__step__box line__up inactive__step__box__last"></div>
       </div>
       <div class="content__crear__denuncio__item__section">
-        <p class="content__crear__denuncio__item__section__title">Resumen solicitud</p>
+        <div id="item__inactive__5" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__5" class="content__crear__denuncio__item__section__title inactive__step__text">Resumen solicitud</p>
         <p class="content__crear__denuncio__item__section__subtitle">Envío de antecedentes para denuncio de cobertura por fallecimiento</p>
         <div class="content__crear__denuncio__item__resumen">
           <p><span>Asegurado:</span> Nombre del asegurado (RUT #####)</p>
@@ -318,7 +343,7 @@
           </ul>
         </div>
         <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 10rem;">
-          <button class="button-secondary">VOLVER</button>
+          <a [routerLink]="['.']" class="button-secondary" fragment="step4" (click)="backStep('item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">VOLVER</a>
           <button class="button-primary">ENVIAR DENUNCIO</button>
         </div>
       </div>

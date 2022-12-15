@@ -15,8 +15,9 @@ export class MenuDenunciaComponent implements OnInit {
 
   isUrlMenu(): boolean{
     const arrayUrl = window.location.href.split('/');
-    const response = arrayUrl.includes('crear-denuncio');
+    let index = arrayUrl.indexOf('menu-denuncio');
+    let arr = arrayUrl.splice(index + 1);
 
-    return !response;
+    return arr.length  == 0 ? true : false;
   }
 }

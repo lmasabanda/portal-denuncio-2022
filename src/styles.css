@@ -8,6 +8,10 @@
   font-family: 'Nunito Sans', sans-serif;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 :root{
   --primary-color: #F8772F;
   --hover-primary-color: #D7590F;

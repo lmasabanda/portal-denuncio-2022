@@ -63,6 +63,10 @@ textarea {
 }
 
 .button-primary, .button-secondary{
+  text-decoration: none;
+}
+
+.button-primary, .button-secondary{
   padding: .7rem 1.5rem;
 }
 
@@ -109,16 +113,28 @@ textarea {
 
 .active__step, .active__step__box::after, .active__step__box::before{
   background-color: var(--primary-color);
+  transition: all .3s ease-in-out;
+}
+
+.inactive__step__box__last::before{
+  background-color: #c2c2c2;
+}
+
+.active__step__box__last::before{
+  background-color: var(--primary-color);
+  transition: all .3s ease-in-out;
 }
 
 .active__step__text{
   color: var(--primary-color);
   font-weight: 900;
+  transition: all .3s ease-in-out;
 }
 
 .content__crear__denuncio__item__section{
   padding: 0rem .5rem 2.5rem 1.7rem;
   width: 100%;
+  position: relative;
 }
 
 .content__crear__denuncio__item__title{
@@ -327,6 +343,36 @@ textarea {
   font-size: .9rem;
 }
 
+.item__inactive{
+  left: 15px;
+  right: 5%;
+  bottom: 10px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.274);
+  z-index: 9;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item__inactive__content{
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.item__inactive__content > i {
+  color: var(--primary-color);
+}
+
+.item__inactive__content > p{
+  font-weight: 600;
+}
 
 @media screen and (max-width: 1000px){
   .content__crear__denuncio__item__form__document__details__title > span{
