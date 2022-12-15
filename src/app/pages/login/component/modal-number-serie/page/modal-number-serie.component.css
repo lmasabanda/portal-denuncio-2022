@@ -66,4 +66,8 @@ section{
   .card__modal__content__leyend > img {
     width: 180px;
   }
+
+  .button-secondary{
+    width: 100%;
+  }
 }

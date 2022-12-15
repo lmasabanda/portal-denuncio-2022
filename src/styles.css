@@ -44,9 +44,3 @@
   color: #FB5B1D;
   border: 1px solid #FB5B1D;
 }
-
-@media screen and (max-width: 600px){
-  .button-secondary{
-    width: 100%;
-  }
-}
