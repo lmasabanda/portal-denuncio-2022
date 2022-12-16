@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class HomeComponent implements OnInit {
   urlImage: string = environment.urlImageLogo;
+  urlImageBlue: string = environment.urlImageBlue;
 
   constructor(private navigateURL : Router) { }
 

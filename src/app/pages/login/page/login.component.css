@@ -8,8 +8,11 @@ main {
 }
 
 main > figure:nth-child(1){
-  background-color: brown;
   flex: 1;
+}
+
+figure > img{
+  height: 100%;
 }
 
 section{
@@ -135,11 +138,12 @@ section > .section__login > .header__tittle p{
 @media screen and (max-width: 900px){
   main {
     padding: 0rem;
-    height: 80vh;
+    height: 100%;
   }
 
-  .section__home{
-    padding: 0rem 10%;
+  .section__login{
+    margin: 5rem 0rem;
+    height: 100%;
   }
 
   main > figure:nth-child(1){

@@ -8,8 +8,11 @@ main {
 }
 
 main > figure:nth-child(1){
-  background-color: brown;
   flex: 1;
+}
+
+figure > img{
+  height: 100%;
 }
 
 section{
@@ -65,11 +68,12 @@ span {
 @media screen and (max-width: 900px){
   main {
     padding: 0rem;
-    height: 80vh;
+    height: 100%;
   }
 
   .section__home{
-    padding: 0rem 10%;
+    margin: 5rem 0rem;
+    height: 100%;
   }
 
   main > figure:nth-child(1){
