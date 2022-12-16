@@ -4,21 +4,19 @@ import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
 
 @Component({
-  selector: 'app-crear-denuncio',
-  templateUrl: './crear-denuncio.component.html',
-  styleUrls: ['./crear-denuncio.component.css']
+  selector: 'app-crear-denuncio-existente',
+  templateUrl: './crear-denuncio-existente.component.html',
+  styleUrls: ['./crear-denuncio-existente.component.css']
 })
-export class CrearDenuncioComponent implements OnInit {
+export class CrearDenuncioExistenteComponent implements OnInit {
   formGroupAsegurado!: FormGroup;
   formGroupSolicitante!: FormGroup;
   formGroupCuentaBancaria!: FormGroup;
   formGroupDocumentos!: FormGroup;
 
-
-  constructor(private router: Router, private formBuilder: FormBuilder, private validatorService: ValidatorsService) {}
+  constructor(private router: Router, private formBuilder: FormBuilder, private validatorService: ValidatorsService) { }
 
   ngOnInit(): void {
-    //this.getObservable();
     this.getFormGroupAsegurado();
     this.getFormGroupSolicitante();
     this.getFormGroupCuentaBancaria();
@@ -130,4 +128,5 @@ export class CrearDenuncioComponent implements OnInit {
   validateOnlyWords(event: any) {
     return this.validatorService.validateOnlyWords(event);
   }
+
 }

@@ -1,0 +1,352 @@
+<section>
+  <div class="header__crear__denuncio">
+    <div class="header__crear__denuncio__menu">
+      <p [routerLink]="'../'" class="back">Inicio</p>
+      <span>></span>
+      <p>Aportar antecedentes a un siniestro ya creado</p>
+    </div>
+    <p class="header__crear__denuncio__tittle">Aportar antecedentes a un siniestro ya creado</p>
+  </div>
+
+  <div class="content__crear__denuncio">
+    <div id="step1" class="content__crear__denuncio__item">
+      <div class="content__crear__denuncio__item__step">
+        <p class="active__step">1</p>
+        <div class="content__crear__denuncio__item__step__box active__step__box"></div>
+      </div>
+      <div class="content__crear__denuncio__item__section">
+        <p class="content__crear__denuncio__item__title active__step__text">Información del asegurado y siniestro</p>
+        <div>
+            <form [formGroup]="formGroupAsegurado" class="content__crear__denuncio__item__form"  (ngSubmit)="nextStep(formGroupAsegurado, 'item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="fechaSiniestro" class="input__normal" type="date" name="" id="">
+                <span>¿Cuándo ocurrió el siniestro?</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="rutAsegurado" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+                <span>RUT asegurado</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="nombreAsegurado" maxlength="60" (keypress)="validateOnlyWords($event)" class="input__large" type="text" name="" id="">
+                <span>Nombres asegurados</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="apellidoAsegurado" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id="">
+                <span>Apellidos asegurados</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__select">
+                <select formControlName="polizaDenuncio"  class="input__large" name="" id="">
+                  <option [ngValue]="'option1'">option1</option>
+                  <option [ngValue]="'option2'">option2</option>
+                  <option [ngValue]="'option3'">option3</option>
+                  <option [ngValue]="'option4'">option4</option>
+                </select>
+                <span>¿A que póliza corresponde este denuncio?</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__select">
+                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="">
+                  <option [ngValue]="'option1'">option1</option>
+                  <option [ngValue]="'option2'">option2</option>
+                  <option [ngValue]="'option3'">option3</option>
+                  <option [ngValue]="'option4'">option4</option>
+                </select>
+                <span>¿Cuál es la cobertura que quiere utilizar?</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__input">
+                <textarea formControlName="causaSiniestro" class="input__large" name="" id="" cols="30" rows="8"></textarea>
+                <span>Explique las causas del siniestro</span>
+              </div>
+              <div class="content__crear__denuncio__item__buttons" >
+                <button [routerLink]="['.']" type="submit" class="button-primary" fragment="step2">SIGUIENTE</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+
+    <div #step2 id="step2" class="content__crear__denuncio__item">
+      <div class="content__crear__denuncio__item__step">
+        <p id="number__2" class="inactive__step">2</p>
+        <div id="number__box__2" class="content__crear__denuncio__item__step__box line__up inactive__step__box"></div>
+      </div>
+      <div class="content__crear__denuncio__item__section">
+        <div id="item__inactive__2" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__2" class="content__crear__denuncio__item__title inactive__step__text">Información solicitante</p>
+        <div >
+          <form [formGroup]="formGroupSolicitante" class="content__crear__denuncio__item__form" (ngSubmit)="nextStep(formGroupSolicitante ,'item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">
+            <div class="content__crear__denuncio__item__form__tittle__radiobutton">
+              <p class="content__crear__denuncio__item__form__tittle">¿El solicitante es el mismo asegurado?</p>
+              <div class="content__crear__denuncio__item__form__radiobutton">
+                <article class="radio-item">
+                  <input formControlName="solicitante" value="no" type="radio" id="no_solicitante" name="solicitante">
+                  <label for="no_solicitante">No, el solicitante es distinto al asegurado</label>
+                </article>
+                <article class="radio-item">
+                  <input formControlName="solicitante" value="si" type="radio" id="solicitante" name="solicitante">
+                  <label for="solicitante">Si, son la misma persona</label>
+                </article>
+              </div>
+            </div>
+            <div class="content__crear__denuncio__item__form__input">
+              <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+              <span>RUT solicitante</span>
+            </div>
+            <div class="content__crear__denuncio__item__form__input">
+              <input formControlName="nombreSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id="">
+              <span>Nombres solicitante</span>
+            </div>
+            <div class="content__crear__denuncio__item__form__input">
+              <input formControlName="apellidoSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)" type="text" name="" id="">
+              <span>Apellidos solicitante</span>
+            </div>
+            <div class="content__crear__denuncio__item__form__input">
+              <input formControlName="emailSolicitante" maxlength="60" class="input__normal"  type="email" name="" id="">
+              <span>Email solicitante</span>
+            </div>
+            <div class="group__input__text">
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="celularSolicitante" class="input__normal" type="text" name="" id="">
+                <span>Celular solicitante</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="telefonoSolicitante"  class="input__normal" type="text" name="" id="">
+                <span>Teléfono solicitante</span>
+              </div>
+            </div>
+            <div class="content__crear__denuncio__item__form__subtitle">
+              <p class="content__crear__denuncio__item__form__tittle">Dirección solicitante</p>
+            </div>
+            <main class="group__input__text">
+              <div class="content__crear__denuncio__item__form__input">
+                <input formControlName="calleSolicitante" class="input__normal" type="text" name="" id="">
+                <span>Calle</span>
+              </div>
+              <article class="group__input__text">
+                <div class="content__crear__denuncio__item__form__input">
+                  <input formControlName="numeroSolicitante" class="input__small" type="text" name="" id="">
+                  <span>Número</span>
+                </div>
+                <div class="content__crear__denuncio__item__form__input">
+                  <input formControlName="deptSolicitante" class="input__small" type="text" name="" id="">
+                  <span>Dept / Block</span>
+                </div>
+              </article>
+            </main>
+            <main class="group__input__text">
+              <div class="content__crear__denuncio__item__form__select">
+                <select formControlName="regionSolicitante" class="input__normal" name="" id="">
+                  <option [ngValue]="'option1'">option1</option>
+                  <option [ngValue]="'option2'">option2</option>
+                  <option [ngValue]="'option3'">option3</option>
+                  <option [ngValue]="'option4'">option4</option>
+                </select>
+                <span>Región</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__select">
+                <select formControlName="comunaSolicitante" class="input__normal" name="" id="">
+                  <option [ngValue]="'option1'">option1</option>
+                  <option [ngValue]="'option2'">option2</option>
+                  <option [ngValue]="'option3'">option3</option>
+                  <option [ngValue]="'option4'">option4</option>
+                </select>
+                <span>Comuna</span>
+              </div>
+              <div class="content__crear__denuncio__item__form__select">
+                <select formControlName="ciudadSolicitante" class="input__normal" name="" id="">
+                  <option [ngValue]="'option1'">option1</option>
+                  <option [ngValue]="'option2'">option2</option>
+                  <option [ngValue]="'option3'">option3</option>
+                  <option [ngValue]="'option4'">option4</option>
+                </select>
+                <span>Ciudad</span>
+              </div>
+            </main>
+            <div class="content__crear__denuncio__item__buttons">
+              <a [routerLink]="['.']" class="button-secondary" fragment="step1" (click)="backStep('item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">VOLVER</a>
+              <button [routerLink]="['.']" type="submit" class="button-primary" fragment="step3">SIGUIENTE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div id="step3" class="content__crear__denuncio__item">
+      <div class="content__crear__denuncio__item__step">
+        <p id="number__3" class="inactive__step">3</p>
+        <div id="number__box__3" class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -8px;"></div>
+      </div>
+      <div class="content__crear__denuncio__item__section">
+        <div id="item__inactive__3" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__3" class="content__crear__denuncio__item__title inactive__step__text" >Datos de cuenta bancaria para reembolso</p>
+        <form [formGroup]="formGroupCuentaBancaria" class="content__crear__denuncio__item__form" (ngSubmit)="nextStep(formGroupCuentaBancaria, 'item__inactive__4', 'number__4', 'number__box__4', 'number__title__4')">
+          <div class="content__crear__denuncio__item__form__tittle__radiobutton">
+            <p class="content__crear__denuncio__item__form__tittle">Tipo de cuenta</p>
+            <div class="content__crear__denuncio__item__form__radiobutton">
+              <article class="radio-item">
+                <input formControlName="typeAccount" value="corriente" type="radio" id="cuenta__corriente" name="typeAccount">
+                <label for="cuenta__corriente">Cuenta corriente</label>
+              </article>
+              <article class="radio-item">
+                <input formControlName="typeAccount" value="ahorro" type="radio" id="cuenta__ahorro" name="typeAccount">
+                <label for="cuenta__ahorro">Cuenta vista o ahorro</label>
+              </article>
+            </div>
+          </div>
+          <div class="content__crear__denuncio__item__form__select">
+            <select formControlName="banco" class="input__normal" name="" id="">
+              <option [ngValue]="'option1'">option1</option>
+              <option [ngValue]="'option2'">option2</option>
+              <option [ngValue]="'option3'">option3</option>
+              <option [ngValue]="'option4'">option3</option>
+            </select>
+            <span>Banco</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input formControlName="numero_cuenta" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+            <span>Número de cuenta</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input formControlName="nombre_cuenta_bancaria" class="input__large" type="text" name="" id="">
+            <span>Nombre titular cuenta bancaria</span>
+          </div>
+          <div class="content__crear__denuncio__item__form__input">
+            <input formControlName="rut_titular" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+            <span>RUT titular</span>
+          </div>
+          <div class="content__crear__denuncio__item__buttons">
+            <a [routerLink]="['.']" class="button-secondary" fragment="step2" (click)="backStep('item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">VOLVER</a>
+            <button type="submit" [routerLink]="['.']" class="button-primary" fragment="step4">SIGUIENTE</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="line"></div>
+
+    <div id="step4" class="content__crear__denuncio__item">
+      <div class="content__crear__denuncio__item__step">
+        <p id="number__4" class="inactive__step">4</p>
+        <div id="number__box__4" class="content__crear__denuncio__item__step__box line__up inactive__step__box" style="top: -5px;"></div>
+      </div>
+      <div class="content__crear__denuncio__item__section">
+        <div id="item__inactive__4" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__4" class="content__crear__denuncio__item__section__title inactive__step__text">Cargar documentos</p>
+        <p class="content__crear__denuncio__item__subtitle">
+          Su solicitud requiere cargar 4 documentos, todos son obligatorios. Recuerde guardar los originales.
+        </p>
+        <main class="content__crear__denuncio__item__form__box">
+          <div class="content__crear__denuncio__item__form__document">
+            <div class="content__crear__denuncio__item__form__document__details">
+              <div class="content__crear__denuncio__item__form__document__details__title">
+                <span></span>
+                <p>Nombre del documento</p>
+              </div>
+              <p>Más información</p>
+            </div>
+            <div class="input__file">
+              <input type="file" name="" id="file__one">
+              <label for="file__one">Subir archivo</label>
+            </div>
+          </div>
+          <div class="content__crear__denuncio__item__form__document">
+            <div class="content__crear__denuncio__item__form__document__details">
+              <div class="content__crear__denuncio__item__form__document__details__title">
+                <span></span>
+                <p>Nombre del documento</p>
+              </div>
+              <p>Más información</p>
+            </div>
+            <div class="input__file">
+              <input type="file" name="" id="file__two">
+              <label for="file__two">Subir archivo</label>
+            </div>
+          </div>
+          <div class="content__crear__denuncio__item__form__document">
+            <div class="content__crear__denuncio__item__form__document__details">
+              <div class="content__crear__denuncio__item__form__document__details__title">
+                <span></span>
+                <p>Nombre del documento</p>
+              </div>
+              <p>Más información</p>
+            </div>
+            <div class="input__file">
+              <input type="file" name="" id="file__tree">
+              <label for="file__tree">Subir archivo</label>
+            </div>
+          </div>
+          <div class="content__crear__denuncio__item__form__document">
+            <div class="content__crear__denuncio__item__form__document__details">
+              <div class="content__crear__denuncio__item__form__document__details__title">
+                <span></span>
+                <p>Nombre del documento</p>
+              </div>
+              <p>Más información</p>
+            </div>
+            <div class="input__file">
+              <input type="file" name="" id="file__four">
+              <label for="file__four">Subir archivo</label>
+            </div>
+          </div>
+        </main>
+        <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 4rem;">
+          <a [routerLink]="['.']" class="button-secondary" fragment="step3" (click)="backStep('item__inactive__4', 'number__4', 'number__box__4', 'number__title__4')">VOLVER</a>
+          <a [routerLink]="['.']" class="button-primary" fragment="step5" (click)="nextStep('','item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">SIGUIENTE</a>
+        </div>
+      </div>
+    </div>
+    <div class="line"></div>
+
+    <div id="step5" class="content__crear__denuncio__item">
+      <div class="content__crear__denuncio__item__step">
+        <p id="number__5" class="inactive__step item__box">5</p>
+        <div id="number__box__5" class="content__crear__denuncio__item__step__box line__up inactive__step__box__last"></div>
+      </div>
+      <div class="content__crear__denuncio__item__section">
+        <div id="item__inactive__5" class="item__inactive">
+          <div class="item__inactive__content">
+            <i class="bi bi-lock-fill"></i>
+            <p>Para seguir realice el paso anterior</p>
+          </div>
+        </div>
+        <p id="number__title__5" class="content__crear__denuncio__item__section__title inactive__step__text">Resumen solicitud</p>
+        <p class="content__crear__denuncio__item__section__subtitle">Envío de antecedentes para denuncio de cobertura por fallecimiento</p>
+        <div class="content__crear__denuncio__item__resumen">
+          <p><span>Asegurado:</span> Nombre del asegurado (RUT #####)</p>
+          <p><span>Póliza:</span> 727828 Nombre-Producto</p>
+          <p><span>Solicitante:</span> Nombre del solicitante (RUT #####)</p>
+          <p><span>cobertura:</span> Nombre de cobertura</p>
+        </div>
+        <div class="title__document__charge">
+          <p><span>Documentos cargados:</span></p>
+          <ul class="list__documents__charge">
+            <li>Documento uno</li>
+            <li>Documento dos</li>
+            <li>Documento tres</li>
+          </ul>
+        </div>
+        <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 10rem;">
+          <a [routerLink]="['.']" class="button-secondary" fragment="step4" (click)="backStep('item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">VOLVER</a>
+          <button class="button-primary">ENVIAR DENUNCIO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

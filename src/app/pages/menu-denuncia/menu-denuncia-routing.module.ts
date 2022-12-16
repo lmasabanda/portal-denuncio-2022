@@ -6,6 +6,7 @@ const routes: Routes = [
   { path:'', component: MenuDenunciaComponent,
     children:[
       {path: 'crear-denuncio', loadChildren : ()=> import('./subviews/crear-denuncio/crear-denuncio.module').then( m => m.CrearDenuncioModule)},
+      {path: 'crear-denuncio-existente', loadChildren : ()=> import('./subviews/crear-denuncio-existente/crear-denuncio-existente.module').then( m => m.CrearDenuncioExistenteModule)},
     ]
   },
   { path:'**' , redirectTo:''}
