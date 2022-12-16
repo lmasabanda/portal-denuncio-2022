@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CrearDenuncioRoutingModule } from './crear-denuncio-routing.module';
 import { CrearDenuncioComponent } from './page/crear-denuncio.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { CrearDenuncioComponent } from './page/crear-denuncio.component';
   ],
   imports: [
     CommonModule,
-    CrearDenuncioRoutingModule
+    CrearDenuncioRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CrearDenuncioModule { }

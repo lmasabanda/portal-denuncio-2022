@@ -348,7 +348,7 @@ textarea {
   right: 5%;
   bottom: 10px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.274);
+  background-color: rgba(0, 0, 0, 0.479);
   z-index: 9;
   position: absolute;
   display: flex;
@@ -399,6 +399,10 @@ textarea {
     justify-content: flex-start;
     align-items: flex-start;
     gap: .5rem;
+  }
+
+  .item__inactive{
+    width: 100%;
   }
 }
 

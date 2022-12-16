@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -16,9 +17,11 @@ export class LoginComponent implements OnInit {
   aFormGroup: FormGroup;
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private validatorService: ValidatorsService) {
     this.aFormGroup = this.formBuilder.group({
-      recaptcha: ['', Validators.required]
+      recaptcha: ['', Validators.required],
+      rut: ['', [Validators.required, Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
+      serie: [ null,  [Validators.required, Validators.pattern(/\-?\d*\.?\d{1,2}/)]]
     });
   }
 
@@ -29,14 +32,18 @@ export class LoginComponent implements OnInit {
     this.showModal = true;
   }
 
-  login(){
-    // if(!this.aFormGroup.valid) return ;
+  login(formValues: any): void{
+    if(!this.aFormGroup.valid) return ;
 
     this.router.navigate(['menu-denuncio']);
   }
 
   handleSuccess($event: any){
-    console.log($event)
+    //console.log($event)
+  }
+
+  validateOnlyNumber($event: any){
+    return this.validatorService.validateOnlyNumber($event);
   }
 
 }

@@ -14,31 +14,36 @@
       <div class="header__leyend">
         <p>Ingresa tu usuario y contraseña</p>
       </div>
-      <div class="header__login__credentials">
-        <div class="inputBox">
-          <input type="text" required="required">
-          <span>RUT</span>
-        </div>
-        <div class="inputBox">
-          <input type="text" required="required">
-          <span>Número de serie</span>
-        </div>
-      </div>
+      <form [formGroup]="aFormGroup" (ngSubmit)="login(aFormGroup.value)">
+        <div class="header__login__credentials">
+          <div class="inputBox">
+            <input formControlName="rut" type="text" required="required" maxlength="12" (keypress)="validateOnlyNumber($event)">
+            <span>RUT</span>
+          </div>
 
-      <div class="number__serie">
-        <p class="number__serie__text" (click)="openModal()">¿Cómo encuentro el número de serie?</p>
-      </div>
+          <div class="inputBox">
+            <input formControlName="serie" type="text" required="required" maxlength="9" (keypress)="validateOnlyNumber($event)">
+            <span>Número de serie</span>
+          </div>
+        </div>
 
-      <div class="recaptcha">
-        <form class="recaptcha__content" [formGroup]="aFormGroup">
-          <ngx-recaptcha2 #captchaElem
-            [siteKey]="siteKey"
-            (success)="handleSuccess($event)"
-            formControlName="recaptcha">
-          </ngx-recaptcha2>
-        </form>
-      </div>
-      <button class="button-primary" (click)="login()">INGRESAR</button>
+
+        <div class="number__serie">
+          <p class="number__serie__text" (click)="openModal()">¿Cómo encuentro el número de serie?</p>
+        </div>
+
+        <div class="recaptcha">
+          <form class="recaptcha__content" [formGroup]="aFormGroup">
+            <ngx-recaptcha2 #captchaElem
+              [siteKey]="siteKey"
+              (success)="handleSuccess($event)"
+              formControlName="recaptcha">
+            </ngx-recaptcha2>
+          </form>
+        </div>
+        <!-- <button class="button-primary" type="submit" (click)="login()">INGRESAR</button> -->
+        <button class="button-primary" type="submit">INGRESAR</button>
+      </form>
     </div>
   </section>
 </main>
