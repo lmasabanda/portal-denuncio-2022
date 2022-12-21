@@ -19,23 +19,23 @@
         <div>
             <form [formGroup]="formGroupAsegurado" class="content__crear__denuncio__item__form"  (ngSubmit)="nextStep(formGroupAsegurado, 'item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="fechaSiniestro" class="input__normal" type="date" name="" id="">
+                <input formControlName="fechaSiniestro" class="input__normal" type="date" name="" id=""  [(ngModel)]="claim.OcurrenceDate" >
                 <span>¿Cuándo ocurrió el siniestro?</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="rutAsegurado" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+                <input formControlName="rutAsegurado" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)"  [(ngModel)]="insurePerson.RUT">
                 <span>RUT asegurado</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="nombreAsegurado" maxlength="60" (keypress)="validateOnlyWords($event)" class="input__large" type="text" name="" id="">
+                <input formControlName="nombreAsegurado" maxlength="60" (keypress)="validateOnlyWords($event)" class="input__large" type="text" name="" id=""  [(ngModel)]="insurePerson.Name">
                 <span>Nombres asegurados</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="apellidoAsegurado" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id="">
+                <input formControlName="apellidoAsegurado" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id=""  [(ngModel)]="insurePerson.LastName">
                 <span>Apellidos asegurados</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="polizaDenuncio"  class="input__large" name="" id="">
+                <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="claim.Policy">
                   <option [ngValue]="'option1'">option1</option>
                   <option [ngValue]="'option2'">option2</option>
                   <option [ngValue]="'option3'">option3</option>
@@ -44,7 +44,7 @@
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="">
+                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="claim.Coverage">
                   <option [ngValue]="'option1'">option1</option>
                   <option [ngValue]="'option2'">option2</option>
                   <option [ngValue]="'option3'">option3</option>
@@ -53,7 +53,7 @@
                 <span>¿Cuál es la cobertura que quiere utilizar?</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <textarea formControlName="causaSiniestro" class="input__large" name="" id="" cols="30" rows="8"></textarea>
+                <textarea  [(ngModel)]="claim.Description" formControlName="causaSiniestro" class="input__large" name="" id="" cols="30" rows="8"></textarea>
                 <span>Explique las causas del siniestro</span>
               </div>
               <div class="content__crear__denuncio__item__buttons" >
@@ -94,28 +94,28 @@
               </div>
             </div>
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)">
+              <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)"  [(ngModel)]="claimPerson.RUT">
               <span>RUT solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="nombreSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id="">
+              <input formControlName="nombreSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)"  type="text" name="" id=""  [(ngModel)]="claimPerson.Name">
               <span>Nombres solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="apellidoSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)" type="text" name="" id="">
+              <input formControlName="apellidoSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)" type="text" name="" id=""  [(ngModel)]="claimPerson.LastName">
               <span>Apellidos solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="emailSolicitante" maxlength="60" class="input__normal"  type="email" name="" id="">
+              <input formControlName="emailSolicitante" maxlength="60" class="input__normal"  type="email" name="" id="" [(ngModel)]="claimPerson.Email">
               <span>Email solicitante</span>
             </div>
             <div class="group__input__text">
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="celularSolicitante" class="input__normal" type="text" name="" id="">
+                <input formControlName="celularSolicitante" class="input__normal" type="text" name="" id=""  [(ngModel)]="claimPerson.CellPhone" >
                 <span>Celular solicitante</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="telefonoSolicitante"  class="input__normal" type="text" name="" id="">
+                <input formControlName="telefonoSolicitante"  class="input__normal" type="text" name="" id=""  [(ngModel)]="claimPerson.Phone">
                 <span>Teléfono solicitante</span>
               </div>
             </div>
@@ -124,7 +124,7 @@
             </div>
             <main class="group__input__text">
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="calleSolicitante" class="input__normal" type="text" name="" id="">
+                <input formControlName="calleSolicitante" class="input__normal" type="text" name="" id=""  [(ngModel)]="claimPerson.Address">
                 <span>Calle</span>
               </div>
               <article class="group__input__text">
@@ -140,7 +140,7 @@
             </main>
             <main class="group__input__text">
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="regionSolicitante" class="input__normal" name="" id="">
+                <select formControlName="regionSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.Region">
                   <option [ngValue]="'option1'">option1</option>
                   <option [ngValue]="'option2'">option2</option>
                   <option [ngValue]="'option3'">option3</option>
@@ -149,7 +149,7 @@
                 <span>Región</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="comunaSolicitante" class="input__normal" name="" id="">
+                <select formControlName="comunaSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.Commune">
                   <option [ngValue]="'option1'">option1</option>
                   <option [ngValue]="'option2'">option2</option>
                   <option [ngValue]="'option3'">option3</option>
@@ -158,7 +158,7 @@
                 <span>Comuna</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="ciudadSolicitante" class="input__normal" name="" id="">
+                <select formControlName="ciudadSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.City">
                   <option [ngValue]="'option1'">option1</option>
                   <option [ngValue]="'option2'">option2</option>
                   <option [ngValue]="'option3'">option3</option>
@@ -344,7 +344,7 @@
         </div>
         <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 10rem;">
           <a [routerLink]="['.']" class="button-secondary" fragment="step4" (click)="backStep('item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">VOLVER</a>
-          <button class="button-primary">ENVIAR DENUNCIO</button>
+          <button class="button-primary" (click)="validateData()">ENVIAR DENUNCIO</button>
         </div>
       </div>
     </div>

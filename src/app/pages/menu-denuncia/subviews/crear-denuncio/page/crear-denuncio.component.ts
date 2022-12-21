@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
+import { CrearDenuncioService } from '../service/crear.denuncio.service';
+import { IClaim, InsurePerson, IClaimPerson } from '@models/interfaces';
 
 @Component({
   selector: 'app-crear-denuncio',
@@ -14,8 +16,18 @@ export class CrearDenuncioComponent implements OnInit {
   formGroupCuentaBancaria!: FormGroup;
   formGroupDocumentos!: FormGroup;
 
+  submitted : boolean = false;
+  claim : IClaim = {} as IClaim;
+  insurePerson : InsurePerson= {} as InsurePerson;
+  claimPerson: IClaimPerson = {} as IClaimPerson;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private validatorService: ValidatorsService) {}
+
+  constructor(
+    private router: Router, 
+    private formBuilder: FormBuilder, 
+    private validatorService: ValidatorsService,
+    private crearDenuncioService: CrearDenuncioService
+    ) {}
 
   ngOnInit(): void {
     //this.getObservable();
@@ -24,6 +36,43 @@ export class CrearDenuncioComponent implements OnInit {
     this.getFormGroupCuentaBancaria();
     this.getFormGroupDocumentos();
   }
+  validateData(){
+    this.submitted = true;
+
+    //Validar el celular
+    /*if(this.phoneUser.replace(/\s+/g, '') == this.phoneAux){ 
+      this.user.user_phone = `(+593)${this.phoneUser}`
+    }else{
+      this.user.user_phone = `(+593)${this.phoneUser.replace(/\s+/g, '')}`
+      this.employeeService.updateEmployee(this.user).subscribe((r : any) => r);
+    }*/
+console.log("aquii...")
+debugger;
+    
+    if (this.insurePerson.Name && this.insurePerson.LastName && this.insurePerson.RUT && this.claim.OcurrenceDate 
+      && this.claim.Policy && this.claim.Coverage &&  this.claim.Description &&
+      this.claimPerson.RUT && this.claimPerson.Name && this.claimPerson.LastName && this.claimPerson.Email
+      && this.claimPerson.CellPhone && this.claimPerson.Phone && this.claimPerson.Address &&
+      this.claimPerson.Region && this.claimPerson.Commune && this.claimPerson.City) {
+
+      this.createClaim();
+      return ;
+    }
+
+    return ;
+  }
+
+    createClaim(){
+      const data = {
+        //id_user : this.user.id_user
+      }
+      console.log("ingreso...")
+      return;
+      this.crearDenuncioService.createClaim(data).subscribe((response) =>{
+       // this.groupOrderByIdOrder(response);
+      });
+    }
+
 
   getFormGroupAsegurado(){
     return this.formGroupAsegurado = this.formBuilder.group({
