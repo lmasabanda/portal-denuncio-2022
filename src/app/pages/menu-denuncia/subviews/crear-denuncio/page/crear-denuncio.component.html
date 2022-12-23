@@ -141,28 +141,19 @@
             <main class="group__input__text">
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="regionSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.Region">
-                  <option [ngValue]="'option1'">option1</option>
-                  <option [ngValue]="'option2'">option2</option>
-                  <option [ngValue]="'option3'">option3</option>
-                  <option [ngValue]="'option4'">option4</option>
+                  <option *ngFor="let region of ListRegions" [value]="region.Id">{{region.Name}}</option>
                 </select>
                 <span>Región</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="comunaSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.Commune">
-                  <option [ngValue]="'option1'">option1</option>
-                  <option [ngValue]="'option2'">option2</option>
-                  <option [ngValue]="'option3'">option3</option>
-                  <option [ngValue]="'option4'">option4</option>
+                  <option *ngFor="let region of ListRegions" [value]="region.Id">{{region.Name}}</option>
                 </select>
                 <span>Comuna</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="ciudadSolicitante" class="input__normal" name="" id=""  [(ngModel)]="claimPerson.City">
-                  <option [ngValue]="'option1'">option1</option>
-                  <option [ngValue]="'option2'">option2</option>
-                  <option [ngValue]="'option3'">option3</option>
-                  <option [ngValue]="'option4'">option4</option>
+                  <option *ngFor="let city of ListCities" [value]="city.Id">{{city.Name}}</option>
                 </select>
                 <span>Ciudad</span>
               </div>

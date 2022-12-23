@@ -3,6 +3,7 @@ export const environment = {
   urlImageLogo: "../../../../../../assets/logo-bancoestado.svg",
   urlImageBlue: "../../../../../../assets/image_home.png",
   keyRecaptcha: "6LcFPoMjAAAAACfwHgl3Q8sTUVZVLko5FU3Jcod3",
-  API : "http://localhost:10298/api/",
-  URL : "http://localhost:10298/",
+  API : "http://localhost:10298/api",
+  URL : "http://localhost:10298/api",
+  REGION_CORE: "SACS-STR_CONNECTION",
 };

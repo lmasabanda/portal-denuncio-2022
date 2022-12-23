@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
 import { CrearDenuncioService } from '../service/crear.denuncio.service';
-import { IClaim, InsurePerson, IClaimPerson } from '@models/interfaces';
+import { IClaim, InsurePerson, IClaimPerson, RequestCommune, 
+         City,  Region, Commune } from '@models/interfaces';
 
 @Component({
   selector: 'app-crear-denuncio',
@@ -20,7 +21,10 @@ export class CrearDenuncioComponent implements OnInit {
   claim : IClaim = {} as IClaim;
   insurePerson : InsurePerson= {} as InsurePerson;
   claimPerson: IClaimPerson = {} as IClaimPerson;
-
+  inputCommune: RequestCommune = {} as RequestCommune ;
+  ListCities: City[] = [];
+  ListRegions: Region[] = [];
+  ListCommunes: Commune[] = [];
 
   constructor(
     private router: Router, 
@@ -31,10 +35,55 @@ export class CrearDenuncioComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getObservable();
+    this.getRegions();
+    this.getCities();
+    this.getCommunes();
+
     this.getFormGroupAsegurado();
     this.getFormGroupSolicitante();
     this.getFormGroupCuentaBancaria();
     this.getFormGroupDocumentos();
+  }
+
+  getCommunes(){
+     
+    this.inputCommune.Id="08414";
+    this.inputCommune.Name="ALTO BIOBIO";
+    this.crearDenuncioService.getCommunes(this.inputCommune).subscribe((response)=>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+          this.ListCommunes = response.ListCommunes;
+      }
+    });
+  }
+
+  getCities(){
+    this.crearDenuncioService.getCities().subscribe((response)=>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+          this.ListCities = response.ListCities;
+      }
+    });
+  }
+
+  getRegions(){
+    this.crearDenuncioService.getRegions().subscribe((response)=>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+          this.ListRegions = response.ListRegions;
+      }
+    });
+  }
+
+  createClaim(){
+    const data = {
+      //id_user : this.user.id_user
+    }
+    console.log("ingreso...")
+    return;
+    this.crearDenuncioService.createClaim(data).subscribe((response) =>{
+     // this.groupOrderByIdOrder(response);
+    });
   }
   validateData(){
     this.submitted = true;
@@ -46,8 +95,7 @@ export class CrearDenuncioComponent implements OnInit {
       this.user.user_phone = `(+593)${this.phoneUser.replace(/\s+/g, '')}`
       this.employeeService.updateEmployee(this.user).subscribe((r : any) => r);
     }*/
-console.log("aquii...")
-debugger;
+
     
     if (this.insurePerson.Name && this.insurePerson.LastName && this.insurePerson.RUT && this.claim.OcurrenceDate 
       && this.claim.Policy && this.claim.Coverage &&  this.claim.Description &&
@@ -62,16 +110,7 @@ debugger;
     return ;
   }
 
-    createClaim(){
-      const data = {
-        //id_user : this.user.id_user
-      }
-      console.log("ingreso...")
-      return;
-      this.crearDenuncioService.createClaim(data).subscribe((response) =>{
-       // this.groupOrderByIdOrder(response);
-      });
-    }
+
 
 
   getFormGroupAsegurado(){
@@ -123,6 +162,7 @@ debugger;
   nextStep(formValues: any, step: string, numberStep: string, numberBox: string, numberTitle: string){
     console.log(formValues.value)
     console.log(formValues.valid)
+  
     if(formValues.value != undefined && !formValues.valid) return;
     if(formValues.emailSolicitante) {
       if(!this.validatorService.validateEmail(formValues.emailSolicitante)) return;
