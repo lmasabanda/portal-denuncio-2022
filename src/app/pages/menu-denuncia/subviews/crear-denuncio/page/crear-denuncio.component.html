@@ -23,11 +23,11 @@
                 <span>¿Cuándo ocurrió el siniestro?</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="rutAsegurado" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)"  [(ngModel)]="insurePerson.RUT">
+                <input formControlName="rutAsegurado" class="input__normal" type="text" name="" id=""  [(ngModel)]="insurePerson.RUT">
                 <span>RUT asegurado</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="nombreAsegurado" maxlength="60" (keypress)="validateOnlyWords($event)" class="input__large" type="text" name="" id=""  [(ngModel)]="insurePerson.Name">
+                <input formControlName="nombreAsegurado" (focus)="onFocusNombreAsegurado($event)" maxlength="60" (keypress)="validateOnlyWords($event)" class="input__large" type="text" name="" id=""  [(ngModel)]="insurePerson.Name">
                 <span>Nombres asegurados</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
@@ -36,19 +36,13 @@
               </div>
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="claim.Policy" (change)="polizaSelected()">
-                  <option [ngValue]="'option1'">option1</option>
-                  <option [ngValue]="'option2'">option2</option>
-                  <option [ngValue]="'option3'">option3</option>
-                  <option [ngValue]="'option4'">option4</option>
+                  <option *ngFor="let policie of ListPolicies" [value]="policie.ProductCode">{{policie.ProductName}}</option>
                 </select>
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="claim.Coverage">
-                  <option [ngValue]="'option1'">option1</option>
-                  <option [ngValue]="'option2'">option2</option>
-                  <option [ngValue]="'option3'">option3</option>
-                  <option [ngValue]="'option4'">option4</option>
+                  <option *ngFor="let coverage of ListCoverages" [value]="coverage.CoverageCode">{{coverage.CoverageName}}</option>
                 </select>
                 <span>¿Cuál es la cobertura que quiere utilizar?</span>
               </div>

@@ -29,7 +29,7 @@ export class CrearDenuncioComponent implements OnInit {
   ListRegions: Region[] = [];
   ListCommunes: Commune[] = [];
   currentUser: Login = {} as Login ;
-  ListPolicies: Policies[] = [];
+  ListPolicies: Policies[] = [];  
   inputPolicies: RequestPolicies = {} as RequestPolicies;
   ListCoverages: Coverages[] = [];
   inputCoverages: RequestCoverages = {} as RequestCoverages;
@@ -42,11 +42,34 @@ export class CrearDenuncioComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    //this.getObservable();
+    //Validacion al momento de iniciar componente se inicializa con valor por default (Selectores)
+    if(this.ListPolicies.length == 0) {
+      this.ListPolicies.push({ProductCode: "0", ProductName: "Sin datos", ProductDescription: "N/a"});
+    }
+    
+    if(this.ListCoverages.length == 0) { 
+      this.ListCoverages.push({CoverageCode: "0", CoverageName: "Sin datos"}); 
+    }
+
+    if(this.ListCities.length == 0) {
+      this.ListCities.push({Id: "0", Name: "Sin datos"});
+    }
+
+    if(this.ListRegions.length == 0) {
+      this.ListRegions.push({Id: "0", Name: "Sin datos"})
+    }
+
+    if(this.ListCommunes.length == 0) {
+      this.ListCommunes.push({Id: "0", Name: "Sin datos"})
+    }
+
+    
+    //LLamado a la API para poblar los selectores 
     this.getRegions();
     this.getCities();
     this.getCommunes();
 
+    //Incorporar validaciones a los input forms
     this.getFormGroupAsegurado();
     this.getFormGroupSolicitante();
     this.getFormGroupCuentaBancaria();
@@ -57,7 +80,14 @@ export class CrearDenuncioComponent implements OnInit {
   get f() { return this.formGroupAsegurado.controls; }
 
   polizaSelected(){
-    console.log(this.f.polizaDenuncio.value)
+    console.log(this.f.polizaDenuncio.value);
+    const polizaSelected = this.f.polizaDenuncio.value;
+    if(polizaSelected && polizaSelected !== null ) {
+      let poliza = polizaSelected.split("|")[0]; //Poliza
+
+      this.getCoverages(poliza);
+    }
+    
   }
 
   getPolicies(){
@@ -65,6 +95,12 @@ export class CrearDenuncioComponent implements OnInit {
     this.inputPolicies.ClaimantRUT =  this.currentUser.rut;
     this.inputPolicies.InsuredRUT =  this.f.rutAsegurado.value;
     this.inputPolicies.OcurrenceDate = this.f.fechaSiniestro.value;
+
+   /* this.inputPolicies.ClaimantRUT = "15781665-9";
+    this.inputPolicies.InsuredRUT = "15781665-9";
+    this.inputPolicies.OcurrenceDate = "2022-12-30";+*/
+
+    console.log(this.inputPolicies);
 
     this.crearDenuncioService.getPolicies(this.inputPolicies).subscribe((response)=>{
       console.log(response);
@@ -74,14 +110,15 @@ export class CrearDenuncioComponent implements OnInit {
     });
   }
 
-  getCoverages(){
+  getCoverages(poliza: string){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.inputCoverages.ClaimantRUT   = this.currentUser.rut;
     this.inputCoverages.InsuredRUT    = this.f.rutAsegurado.value;
     this.inputCoverages.OcurrenceDate = this.f.fechaSiniestro.value;
-    this.inputCoverages.Core          = environment.REGION_CORE;
-    this.inputCoverages.Policy        = "123456789";
+    this.inputCoverages.Core          = environment.CORE_COVERAGES;
+    this.inputCoverages.Policy        = poliza;
 
+    console.log(this.inputCoverages);
     this.crearDenuncioService.getCoverages(this.inputCoverages).subscribe((response)=>{
       console.log(response);
       if(response.Code == 0 && response.Message == 'OK'){
@@ -118,6 +155,10 @@ export class CrearDenuncioComponent implements OnInit {
           this.ListRegions = response.ListRegions;
       }
     });
+  }
+
+  deleteNoData(list: any) {
+
   }
 
   createClaim(){
@@ -207,8 +248,6 @@ export class CrearDenuncioComponent implements OnInit {
   nextStep(formValues: any, step: string, numberStep: string, numberBox: string, numberTitle: string){
     console.log(formValues.value)
     console.log(formValues.valid)
-
-    this.getPolicies();
   
     /*if(formValues.value != undefined && !formValues.valid) return;
     if(formValues.emailSolicitante) {
@@ -258,6 +297,19 @@ export class CrearDenuncioComponent implements OnInit {
 
   //   secciones.forEach(seccion => observe.observe(seccion));
   // }
+
+  //linea 26 html (keypress)="validateOnlyNumber($event)"
+
+  onFocusNombreAsegurado($event: any){
+    console.log($event);
+    if( this.ListPolicies.length > 0){
+      this.ListPolicies =  this.ListPolicies.filter(item => item.ProductName !== "Sin datos");
+    }
+
+    if(this.f.rutAsegurado.value != null &&  this.ListPolicies.length == 0){
+      this.getPolicies();
+    }
+  }
 
   validateOnlyNumber($event: any){
     return this.validatorService.validateOnlyNumber($event);

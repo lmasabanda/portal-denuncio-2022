@@ -11,6 +11,7 @@ import { AuthenticationService } from '../service/authentication.service';
 "Quiero que se elimine el token cuando se cierre el navegador".
 localStorageguarda la sesión para siempre, pero SessionStorage cierra la sesión cuando se cierra un navegador.*/
 
+//linea 20 html (keypress)="validateOnlyNumber($event)"
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
