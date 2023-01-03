@@ -17,7 +17,7 @@
       <form [formGroup]="aFormGroup" (ngSubmit)="login(aFormGroup.value)">
         <div class="header__login__credentials">
           <div class="inputBox">
-            <input formControlName="rut" type="text" required="required" maxlength="12" (keypress)="validateOnlyNumber($event)">
+            <input formControlName="rut" type="text" required="required" maxlength="9" (keypress)="validateOnlyNumber($event)">
             <span>RUT</span>
           </div>
 

@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
 import { CrearDenuncioService } from '../service/crear.denuncio.service';
 import { IClaim, InsurePerson, IClaimPerson, RequestCommune, 
-         City,  Region, Commune } from '@models/interfaces';
+         City,  Region, Commune, Login, RequestPolicies, Policies,
+         RequestCoverages, Coverages } from '@models/interfaces';
+         
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-crear-denuncio',
@@ -25,6 +28,11 @@ export class CrearDenuncioComponent implements OnInit {
   ListCities: City[] = [];
   ListRegions: Region[] = [];
   ListCommunes: Commune[] = [];
+  currentUser: Login = {} as Login ;
+  ListPolicies: Policies[] = [];
+  inputPolicies: RequestPolicies = {} as RequestPolicies;
+  ListCoverages: Coverages[] = [];
+  inputCoverages: RequestCoverages = {} as RequestCoverages;
 
   constructor(
     private router: Router, 
@@ -44,6 +52,43 @@ export class CrearDenuncioComponent implements OnInit {
     this.getFormGroupCuentaBancaria();
     this.getFormGroupDocumentos();
   }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.formGroupAsegurado.controls; }
+
+  polizaSelected(){
+    console.log(this.f.polizaDenuncio.value)
+  }
+
+  getPolicies(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.inputPolicies.ClaimantRUT =  this.currentUser.rut;
+    this.inputPolicies.InsuredRUT =  this.f.rutAsegurado.value;
+    this.inputPolicies.OcurrenceDate = this.f.fechaSiniestro.value;
+
+    this.crearDenuncioService.getPolicies(this.inputPolicies).subscribe((response)=>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+          this.ListPolicies = response.ListPolicies;
+      }
+    });
+  }
+
+  getCoverages(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.inputCoverages.ClaimantRUT   = this.currentUser.rut;
+    this.inputCoverages.InsuredRUT    = this.f.rutAsegurado.value;
+    this.inputCoverages.OcurrenceDate = this.f.fechaSiniestro.value;
+    this.inputCoverages.Core          = environment.REGION_CORE;
+    this.inputCoverages.Policy        = "123456789";
+
+    this.crearDenuncioService.getCoverages(this.inputCoverages).subscribe((response)=>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+          this.ListCoverages = response.ListCoverages;
+      }
+    });
+  } 
 
   getCommunes(){
      
@@ -162,11 +207,13 @@ export class CrearDenuncioComponent implements OnInit {
   nextStep(formValues: any, step: string, numberStep: string, numberBox: string, numberTitle: string){
     console.log(formValues.value)
     console.log(formValues.valid)
+
+    this.getPolicies();
   
-    if(formValues.value != undefined && !formValues.valid) return;
+    /*if(formValues.value != undefined && !formValues.valid) return;
     if(formValues.emailSolicitante) {
       if(!this.validatorService.validateEmail(formValues.emailSolicitante)) return;
-    }
+    }*/
 
     const divNumberStep = document.getElementById(`${numberStep}`);
     const divNumberBox = document.getElementById(`${numberBox}`);
