@@ -74,19 +74,6 @@
         <p id="number__title__2" class="content__crear__denuncio__item__title inactive__step__text">Información solicitante</p>
         <div >
           <form [formGroup]="formGroupSolicitante" class="content__crear__denuncio__item__form" (ngSubmit)="nextStep(formGroupSolicitante ,'item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">
-            <div class="content__crear__denuncio__item__form__tittle__radiobutton">
-              <p class="content__crear__denuncio__item__form__tittle">¿El solicitante es el mismo asegurado?</p>
-              <div class="content__crear__denuncio__item__form__radiobutton">
-                <article class="radio-item">
-                  <input formControlName="solicitante" value="no" type="radio" id="no_solicitante" name="solicitante">
-                  <label for="no_solicitante">No, el solicitante es distinto al asegurado</label>
-                </article>
-                <article class="radio-item">
-                  <input formControlName="solicitante" value="si" type="radio" id="solicitante" name="solicitante">
-                  <label for="solicitante">Si, son la misma persona</label>
-                </article>
-              </div>
-            </div>
             <div class="content__crear__denuncio__item__form__input">
               <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)"  [(ngModel)]="claimPerson.RUT">
               <span>RUT solicitante</span>
