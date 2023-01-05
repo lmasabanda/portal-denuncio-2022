@@ -42,7 +42,7 @@ export class CrearDenuncioComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    //Validacion al momento de iniciar componente se inicializa con valor por default (Selectores)
+    //Validacion al momento de iniciar componente se inicializa con valor por default (Selectores)  
     if(this.ListPolicies.length == 0) {
       this.ListPolicies.push({ProductCode: "0", ProductName: "Sin datos", ProductDescription: "N/a"});
     }
@@ -83,6 +83,7 @@ export class CrearDenuncioComponent implements OnInit {
     console.log(this.f.polizaDenuncio.value);
     const polizaSelected = this.f.polizaDenuncio.value;
     if(polizaSelected && polizaSelected !== null ) {
+      this.claim.Policy = this.f.polizaDenuncio.value;
       let poliza = polizaSelected.split("|")[0]; //Poliza
 
       this.getCoverages(poliza);
@@ -318,4 +319,36 @@ export class CrearDenuncioComponent implements OnInit {
   validateOnlyWords(event: any) {
     return this.validatorService.validateOnlyWords(event);
   }
+
+  showInsureName(){
+    return this.insurePerson.Name || this.insurePerson.LastName ; 
+  }
+
+  resumeInsureRUT(){
+    if( this.insurePerson.RUT && this.insurePerson.RUT !== undefined){
+      return "(RUT "+ this.insurePerson.RUT +" )";
+    }
+    return "";
+  }
+
+  showClaimName(){
+    return this.claimPerson.Name || this.claimPerson.LastName ; 
+  }
+
+  resumeClaimRUT(){
+    if( this.claimPerson.RUT && this.claimPerson.RUT !== undefined){
+      return "(RUT "+ this.claimPerson.RUT +" )";
+    }
+
+    return "";
+  }
+  
+  resumePolicy(){
+    if( this.claim.Policy && this.claim.Policy !== undefined){
+      return this.claim.Policy;
+    }
+    return "";
+  }
+ 
+  
 }

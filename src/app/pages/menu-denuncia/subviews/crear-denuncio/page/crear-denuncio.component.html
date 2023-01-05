@@ -37,6 +37,10 @@
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="claim.Policy" (change)="polizaSelected()">
                   <option *ngFor="let policie of ListPolicies" [value]="policie.ProductCode">{{policie.ProductName}}</option>
+                  <option value="0">111111</option>
+                  <option value='1'>2222222</option>
+                  <option value='2'>3333333</option>
+                  <option value='3'>4444444</option>
                 </select>
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
@@ -75,7 +79,7 @@
         <div >
           <form [formGroup]="formGroupSolicitante" class="content__crear__denuncio__item__form" (ngSubmit)="nextStep(formGroupSolicitante ,'item__inactive__3', 'number__3', 'number__box__3', 'number__title__3')">
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" (keypress)="validateOnlyNumber($event)"  [(ngModel)]="claimPerson.RUT">
+              <input formControlName="rutSolicitante" class="input__normal" type="text" name="" id="" [(ngModel)]="claimPerson.RUT">
               <span>RUT solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
@@ -301,9 +305,20 @@
         <p id="number__title__5" class="content__crear__denuncio__item__section__title inactive__step__text">Resumen solicitud</p>
         <p class="content__crear__denuncio__item__section__subtitle">Envío de antecedentes para denuncio de cobertura por fallecimiento</p>
         <div class="content__crear__denuncio__item__resumen">
-          <p><span>Asegurado:</span> Nombre del asegurado (RUT #####)</p>
-          <p><span>Póliza:</span> 727828 Nombre-Producto</p>
-          <p><span>Solicitante:</span> Nombre del solicitante (RUT #####)</p>
+          <p><span>Asegurado:</span>
+              <span style="font-weight:normal;" ng-show="showInsureName()">{{insurePerson.Name}} {{insurePerson.LastName}}</span> 
+              <label>&nbsp;</label>
+              <span style="font-weight:normal;"> {{resumeInsureRUT()}}</span>
+          </p>
+          <p><span>Póliza:</span>
+            <span style="font-weight:normal;">{{resumePolicy()}}</span>  Nombre-Producto
+          </p>
+          <p>
+            <span>Solicitante:</span> 
+            <span style="font-weight:normal;" ng-show="showClaimName()">{{claimPerson.Name}} {{claimPerson.LastName}}</span> 
+            <label>&nbsp;</label>
+            <span style="font-weight:normal;"> {{resumeClaimRUT()}}</span> 
+          </p>
           <p><span>cobertura:</span> Nombre de cobertura</p>
         </div>
         <div class="title__document__charge">

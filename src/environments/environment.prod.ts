@@ -8,3 +8,5 @@ export const environment = {
   REGION_CORE: "SACS-STR_CONNECTION",
   CORE_COVERAGES: "SACS"
 };
+
+//15781665-9
