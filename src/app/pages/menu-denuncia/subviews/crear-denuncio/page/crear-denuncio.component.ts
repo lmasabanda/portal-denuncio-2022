@@ -91,6 +91,15 @@ export class CrearDenuncioComponent implements OnInit {
     
   }
 
+  coverageSelected(){
+    console.log(this.f.coberturaAsegurado.value);
+    const coverageSelected = this.f.coberturaAsegurado.value;
+    if(coverageSelected && coverageSelected !== null ) {
+      this.claim.Coverage = this.f.polizaDenuncio.value;
+    }
+  }
+
+
   getPolicies(){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.inputPolicies.ClaimantRUT =  this.currentUser.rut;
@@ -302,7 +311,6 @@ export class CrearDenuncioComponent implements OnInit {
   //linea 26 html (keypress)="validateOnlyNumber($event)"
 
   onFocusNombreAsegurado($event: any){
-    console.log($event);
     if( this.ListPolicies.length > 0){
       this.ListPolicies =  this.ListPolicies.filter(item => item.ProductName !== "Sin datos");
     }
@@ -345,7 +353,14 @@ export class CrearDenuncioComponent implements OnInit {
   
   resumePolicy(){
     if( this.claim.Policy && this.claim.Policy !== undefined){
-      return this.claim.Policy;
+      return this.claim.Policy.split("|")[0];
+    }
+    return "";
+  }
+
+  resumeCoverge(){
+    if( this.claim.Coverage && this.claim.Coverage !== undefined){
+      return this.claim.Coverage;
     }
     return "";
   }

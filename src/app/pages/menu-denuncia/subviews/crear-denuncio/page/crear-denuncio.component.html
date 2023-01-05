@@ -37,15 +37,11 @@
               <div class="content__crear__denuncio__item__form__select">
                 <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="claim.Policy" (change)="polizaSelected()">
                   <option *ngFor="let policie of ListPolicies" [value]="policie.ProductCode">{{policie.ProductName}}</option>
-                  <option value="0">111111</option>
-                  <option value='1'>2222222</option>
-                  <option value='2'>3333333</option>
-                  <option value='3'>4444444</option>
                 </select>
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="claim.Coverage">
+                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="claim.Coverage" (change)="coverageSelected()">
                   <option *ngFor="let coverage of ListCoverages" [value]="coverage.CoverageCode">{{coverage.CoverageName}}</option>
                 </select>
                 <span>¿Cuál es la cobertura que quiere utilizar?</span>
@@ -319,7 +315,7 @@
             <label>&nbsp;</label>
             <span style="font-weight:normal;"> {{resumeClaimRUT()}}</span> 
           </p>
-          <p><span>cobertura:</span> Nombre de cobertura</p>
+          <p><span>cobertura:</span> <span style="font-weight:normal;"> {{resumeCoverge()}}</span></p>
         </div>
         <div class="title__document__charge">
           <p><span>Documentos cargados:</span></p>
