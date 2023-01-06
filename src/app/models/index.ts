@@ -14,3 +14,5 @@ export * from './common/responsePolicies';
 export * from './common/requestCoverages';
 export * from './common/coverages';
 export * from './common/responseCoverages';
+export * from './common/requestClaim';
+export * from './common/responseAddClaim';

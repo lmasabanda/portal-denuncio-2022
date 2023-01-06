@@ -19,7 +19,7 @@
         <div>
             <form [formGroup]="formGroupAsegurado" class="content__crear__denuncio__item__form"  (ngSubmit)="nextStep(formGroupAsegurado, 'item__inactive__2', 'number__2', 'number__box__2', 'number__title__2')">
               <div class="content__crear__denuncio__item__form__input">
-                <input formControlName="fechaSiniestro" class="input__normal" type="date" name="" id=""  [(ngModel)]="claim.OcurrenceDate" >
+                <input formControlName="fechaSiniestro" class="input__normal" type="date" name="" id=""  [(ngModel)]="requestClaim.OcurrenceDate" >
                 <span>¿Cuándo ocurrió el siniestro?</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
@@ -35,19 +35,19 @@
                 <span>Apellidos asegurados</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="claim.Policy" (change)="polizaSelected()">
+                <select formControlName="polizaDenuncio"  class="input__large" name="" id=""  [(ngModel)]="requestClaim.Policy" (change)="polizaSelected()">
                   <option *ngFor="let policie of ListPolicies" [value]="policie.ProductCode">{{policie.ProductName}}</option>
                 </select>
                 <span>¿A que póliza corresponde este denuncio?</span>
               </div>
               <div class="content__crear__denuncio__item__form__select">
-                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="claim.Coverage" (change)="coverageSelected()">
+                <select formControlName="coberturaAsegurado"  class="input__large" name="" id="" [(ngModel)]="requestClaim.Coverage" (change)="coverageSelected()">
                   <option *ngFor="let coverage of ListCoverages" [value]="coverage.CoverageCode">{{coverage.CoverageName}}</option>
                 </select>
                 <span>¿Cuál es la cobertura que quiere utilizar?</span>
               </div>
               <div class="content__crear__denuncio__item__form__input">
-                <textarea  [(ngModel)]="claim.Description" formControlName="causaSiniestro" class="input__large" name="" id="" cols="30" rows="8"></textarea>
+                <textarea  [(ngModel)]="requestClaim.Description" formControlName="causaSiniestro" class="input__large" name="" id="" cols="30" rows="8"></textarea>
                 <span>Explique las causas del siniestro</span>
               </div>
               <div class="content__crear__denuncio__item__buttons" >
@@ -83,7 +83,7 @@
               <span>Nombres solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
-              <input formControlName="apellidoSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)" type="text" name="" id=""  [(ngModel)]="claimPerson.LastName">
+              <input formControlName="apellidoSolicitante" maxlength="60" class="input__large" (keypress)="validateOnlyWords($event)" type="text" name="" id=""  [ngModel]="claimPerson.LastName">
               <span>Apellidos solicitante</span>
             </div>
             <div class="content__crear__denuncio__item__form__input">
@@ -234,7 +234,7 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__one">
+              <input type="file" name="" id="file__one" (change)="onFileSelectedOne()">
               <label for="file__one">Subir archivo</label>
             </div>
           </div>
@@ -247,7 +247,7 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__two">
+              <input type="file" name="" id="file__two" (change)="onFileSelectedTwo()">
               <label for="file__two">Subir archivo</label>
             </div>
           </div>
@@ -260,7 +260,7 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__tree">
+              <input type="file" name="" id="file__tree" (change)="onFileSelectedTree()">
               <label for="file__tree">Subir archivo</label>
             </div>
           </div>
@@ -273,7 +273,7 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__four">
+              <input type="file" name="file__four" id="file__four" (change)="onFileSelectedFour()">
               <label for="file__four">Subir archivo</label>
             </div>
           </div>

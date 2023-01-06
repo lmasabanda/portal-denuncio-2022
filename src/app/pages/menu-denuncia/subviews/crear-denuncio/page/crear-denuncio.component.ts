@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorsService } from 'src/app/shared/services/validators/validators.service';
 import { CrearDenuncioService } from '../service/crear.denuncio.service';
-import { IClaim, InsurePerson, IClaimPerson, RequestCommune, 
+import { RequestClaim, InsurePerson, IClaimPerson, RequestCommune, 
          City,  Region, Commune, Login, RequestPolicies, Policies,
          RequestCoverages, Coverages } from '@models/interfaces';
          
@@ -15,15 +15,17 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./crear-denuncio.component.css']
 })
 export class CrearDenuncioComponent implements OnInit {
+  documentList: any[] = [];
   formGroupAsegurado!: FormGroup;
   formGroupSolicitante!: FormGroup;
   formGroupCuentaBancaria!: FormGroup;
   formGroupDocumentos!: FormGroup;
 
   submitted : boolean = false;
-  claim : IClaim = {} as IClaim;
-  insurePerson : InsurePerson= {} as InsurePerson;
+  public requestClaim : RequestClaim =  {} as RequestClaim ; 
+  insurePerson: InsurePerson = {} as InsurePerson;
   claimPerson: IClaimPerson = {} as IClaimPerson;
+
   inputCommune: RequestCommune = {} as RequestCommune ;
   ListCities: City[] = [];
   ListRegions: Region[] = [];
@@ -83,7 +85,7 @@ export class CrearDenuncioComponent implements OnInit {
     console.log(this.f.polizaDenuncio.value);
     const polizaSelected = this.f.polizaDenuncio.value;
     if(polizaSelected && polizaSelected !== null ) {
-      this.claim.Policy = this.f.polizaDenuncio.value;
+      this.requestClaim.Policy = this.f.polizaDenuncio.value;
       let poliza = polizaSelected.split("|")[0]; //Poliza
 
       this.getCoverages(poliza);
@@ -95,7 +97,7 @@ export class CrearDenuncioComponent implements OnInit {
     console.log(this.f.coberturaAsegurado.value);
     const coverageSelected = this.f.coberturaAsegurado.value;
     if(coverageSelected && coverageSelected !== null ) {
-      this.claim.Coverage = this.f.polizaDenuncio.value;
+      this.requestClaim.Coverage = this.f.polizaDenuncio.value;
     }
   }
 
@@ -116,7 +118,9 @@ export class CrearDenuncioComponent implements OnInit {
       console.log(response);
       if(response.Code == 0 && response.Message == 'OK'){
           this.ListPolicies = response.ListPolicies;
-      }
+      } else {
+        this.ListPolicies.push({ProductCode: "0", ProductName: "Sin datos", ProductDescription: "N/a"});
+      } 
     });
   }
 
@@ -171,41 +175,45 @@ export class CrearDenuncioComponent implements OnInit {
 
   }
 
-  createClaim(){
-    const data = {
-      //id_user : this.user.id_user
-    }
-    console.log("ingreso...")
-    return;
-    this.crearDenuncioService.createClaim(data).subscribe((response) =>{
-     // this.groupOrderByIdOrder(response);
-    });
-  }
   validateData(){
     this.submitted = true;
 
     //Validar el celular
-    /*if(this.phoneUser.replace(/\s+/g, '') == this.phoneAux){ 
-      this.user.user_phone = `(+593)${this.phoneUser}`
-    }else{
-      this.user.user_phone = `(+593)${this.phoneUser.replace(/\s+/g, '')}`
-      this.employeeService.updateEmployee(this.user).subscribe((r : any) => r);
-    }*/
+    /*if(this.requestClaim.InsurePerson.Name && this.requestClaim.InsurePerson.LastName && this.requestClaim.InsurePerson.RUT && 
+      this.requestClaim.OcurrenceDate && this.requestClaim.Policy && this.requestClaim.Coverage &&  this.requestClaim.Description &&
+      this.requestClaim.ClaimPerson.RUT && this.requestClaim.ClaimPerson.Name && this.requestClaim.ClaimPerson.LastName && 
+      this.requestClaim.ClaimPerson.Email && this.requestClaim.ClaimPerson.CellPhone && this.requestClaim.ClaimPerson.Phone && 
+      this.requestClaim.ClaimPerson.Address && this.requestClaim.ClaimPerson.Region && this.requestClaim.ClaimPerson.Commune && 
+      this.requestClaim.ClaimPerson.City) {
 
-    
-    if (this.insurePerson.Name && this.insurePerson.LastName && this.insurePerson.RUT && this.claim.OcurrenceDate 
-      && this.claim.Policy && this.claim.Coverage &&  this.claim.Description &&
-      this.claimPerson.RUT && this.claimPerson.Name && this.claimPerson.LastName && this.claimPerson.Email
-      && this.claimPerson.CellPhone && this.claimPerson.Phone && this.claimPerson.Address &&
-      this.claimPerson.Region && this.claimPerson.Commune && this.claimPerson.City) {
-
+      
       this.createClaim();
       return ;
-    }
+    }*/
 
-    return ;
+    console.log(this.insurePerson);
+    console.log(this.claimPerson);
+
+    this.requestClaim.InsurePerson = this.insurePerson;
+    this.requestClaim.ClaimPerson = this.claimPerson;
+    
+    console.log(this.requestClaim);
+    this.createClaim(this.requestClaim);
+
   }
 
+  createClaim(data : RequestClaim){
+    this.crearDenuncioService.createClaim(data).subscribe((response) =>{
+      console.log(response);
+      if(response.Code == 0 && response.Message == 'OK'){
+         console.log(response);
+         alert("Denuncio guardado de manera satisfactoria!");
+      } else {
+        console.log("Ocurrio un error");
+         alert("Ocurrio un error al tratar de guardar denuncuio.");
+      } 
+    });
+  }
 
 
 
@@ -311,7 +319,7 @@ export class CrearDenuncioComponent implements OnInit {
   //linea 26 html (keypress)="validateOnlyNumber($event)"
 
   onFocusNombreAsegurado($event: any){
-    if( this.ListPolicies.length > 0){
+    if(this.ListPolicies.length > 0){
       this.ListPolicies =  this.ListPolicies.filter(item => item.ProductName !== "Sin datos");
     }
 
@@ -329,41 +337,101 @@ export class CrearDenuncioComponent implements OnInit {
   }
 
   showInsureName(){
-    return this.insurePerson.Name || this.insurePerson.LastName ; 
+    return this.requestClaim.InsurePerson.Name || this.requestClaim.InsurePerson.LastName ; 
   }
 
   resumeInsureRUT(){
-    if( this.insurePerson.RUT && this.insurePerson.RUT !== undefined){
-      return "(RUT "+ this.insurePerson.RUT +" )";
+    if( this.requestClaim.InsurePerson?.RUT && this.requestClaim.InsurePerson?.RUT !== undefined){
+      return "(RUT "+ this.requestClaim.InsurePerson.RUT +" )";
     }
     return "";
   }
 
   showClaimName(){
-    return this.claimPerson.Name || this.claimPerson.LastName ; 
+    return  this.requestClaim.ClaimPerson.Name ||  this.requestClaim.ClaimPerson.LastName ; 
   }
 
   resumeClaimRUT(){
-    if( this.claimPerson.RUT && this.claimPerson.RUT !== undefined){
-      return "(RUT "+ this.claimPerson.RUT +" )";
+    if(  this.requestClaim.ClaimPerson?.RUT &&  this.requestClaim.ClaimPerson?.RUT !== undefined){
+      return "(RUT "+  this.requestClaim.ClaimPerson.RUT +" )";
     }
 
     return "";
   }
   
   resumePolicy(){
-    if( this.claim.Policy && this.claim.Policy !== undefined){
-      return this.claim.Policy.split("|")[0];
+    if(  this.requestClaim.Policy &&  this.requestClaim.Policy !== undefined){
+      return  this.requestClaim.Policy.split("|")[0];
     }
     return "";
   }
 
   resumeCoverge(){
-    if( this.claim.Coverage && this.claim.Coverage !== undefined){
-      return this.claim.Coverage;
+    if(  this.requestClaim.Coverage &&  this.requestClaim.Coverage !== undefined){
+      return  this.requestClaim.Coverage;
     }
     return "";
   }
+
+  onFileSelectedOne(){
+    const input = document.getElementById('file__one') as HTMLInputElement; 
+    const file = input.files?.[0];
+    const fileType = file?.type;
+  
+    console.log(file);
+    console.log(fileType);
+
+
+
+   /* this.documentList.push({index: 0, 
+                            fileName: fileName, 
+                            fileType:  fileType}
+                           );*/
+}
+
+onFileSelectedTwo(){
+  const input = document.getElementById('file__one') as HTMLInputElement; 
+  const file = input.files?.[0];
+  const fileType = file?.type;
+  
+    console.log(file);
+    console.log(fileType);
+
+  /*this.documentList.push({index: 0, 
+                          fileName: fileName, 
+                          fileType:  fileType}
+                         );*/
+}
+
+onFileSelectedTree(){
+
+  const input = document.getElementById('file__tree') as HTMLInputElement; 
+  const file = input.files?.[0];
+  const fileType = file?.type;
+  
+    console.log(file);
+    console.log(fileType);
+
+  /*this.documentList.push({index: 0, 
+                          fileName: fileName, 
+                          fileType:  fileType}
+                         );*/
+}
+
+onFileSelectedFour(){
+  const input = document.getElementById('file__four') as HTMLInputElement; 
+  const file = input.files?.[0];
+  const fileType = file?.type;
+
+  console.log(file);
+  console.log(fileType);
+  
+  /*this.documentList.push({index: 0, 
+                          fileName: fileName, 
+                          fileType:  fileType}
+                         );*/
+
+}
  
   
 }

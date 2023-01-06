@@ -1,16 +1,8 @@
 
 
-export interface IClaim {
-    SponsorRUT: string;
-    OcurrenceDate: string;
-    Description: string;
-    ProcessType: string;
-    Policy: string;
-    Coverage: string;
-    ClaimType: string;
-    UserRUT: string;
-    Core: string;
-}
+/*export interface IClaim {
+    
+}*/
 
 export interface InsurePerson {
     Type: string;

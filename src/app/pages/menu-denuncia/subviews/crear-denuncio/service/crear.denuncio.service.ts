@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { ResponseRegions, ResponseCities, RequestCommune, ResponseCommunes,
-         RequestPolicies, ResponsePolicies, RequestCoverages, ResponseCoverages } from '@models/interfaces';
+         RequestPolicies, ResponsePolicies, RequestCoverages, ResponseCoverages,
+         RequestClaim, ResponseAddClaim } from '@models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class CrearDenuncioService {
   url : string = environment.API;
 
   constructor(private _http : HttpClient) { }
+
+  createClaim(data : RequestClaim) : Observable<ResponseAddClaim>{
+    return this._http.post<any>(`${this.url}/Claim/AddClaim`, data);
+  }
 
   getPolicies(data: RequestPolicies )  : Observable<ResponsePolicies>{
     return this._http.post<any>(`${this.url}/Claim/GetPolicies`, data);
@@ -34,7 +39,5 @@ export class CrearDenuncioService {
     let params = new HttpParams().set('core', environment.REGION_CORE);
     return this._http.get<ResponseRegions>(`${this.url}/Client/GetRegions/core`,   { params: params });
   }
-  createClaim(data : any) : Observable<any>{
-    return this._http.post<any>(`${this.url}/Claim/AddClaim`, data);
-  }
+ 
 }
