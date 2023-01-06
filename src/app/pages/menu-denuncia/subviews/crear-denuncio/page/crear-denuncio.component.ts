@@ -194,9 +194,18 @@ export class CrearDenuncioComponent implements OnInit {
     console.log(this.insurePerson);
     console.log(this.claimPerson);
 
+    this.requestClaim.SponsorRUT  = this.insurePerson.RUT;
+    this.requestClaim.ProcessType = "1";
+    this.insurePerson.Type  = "1";
+
+    var insureRUT = this.insurePerson.RUT;
+    this.insurePerson.DV    = insureRUT.slice(-1);
+
+    this.claimPerson.Type   = "1"
+
     this.requestClaim.InsurePerson = this.insurePerson;
     this.requestClaim.ClaimPerson = this.claimPerson;
-    
+
     console.log(this.requestClaim);
     this.createClaim(this.requestClaim);
 
@@ -378,29 +387,27 @@ export class CrearDenuncioComponent implements OnInit {
     const file = input.files?.[0];
     const fileType = file?.type;
   
-    console.log(file);
+    console.log(file?.name);
     console.log(fileType);
-
-
-
-   /* this.documentList.push({index: 0, 
-                            fileName: fileName, 
+    
+    this.documentList.push({index: 0, 
+                            fileName: file?.name, 
                             fileType:  fileType}
-                           );*/
+                           );
 }
 
 onFileSelectedTwo(){
-  const input = document.getElementById('file__one') as HTMLInputElement; 
+  const input = document.getElementById('file__two') as HTMLInputElement; 
   const file = input.files?.[0];
   const fileType = file?.type;
   
-    console.log(file);
-    console.log(fileType);
-
-  /*this.documentList.push({index: 0, 
-                          fileName: fileName, 
+  console.log(file?.name);
+  console.log(fileType);
+  
+  this.documentList.push({index: 1, 
+                          fileName: file?.name, 
                           fileType:  fileType}
-                         );*/
+                         );
 }
 
 onFileSelectedTree(){
@@ -409,13 +416,14 @@ onFileSelectedTree(){
   const file = input.files?.[0];
   const fileType = file?.type;
   
-    console.log(file);
+    console.log(file?.name);
     console.log(fileType);
-
-  /*this.documentList.push({index: 0, 
-                          fileName: fileName, 
-                          fileType:  fileType}
-                         );*/
+    
+    this.documentList.push({index: 2, 
+                            fileName: file?.name, 
+                            fileType:  fileType}
+                           );
+  
 }
 
 onFileSelectedFour(){
@@ -423,13 +431,13 @@ onFileSelectedFour(){
   const file = input.files?.[0];
   const fileType = file?.type;
 
-  console.log(file);
+  console.log(file?.name);
   console.log(fileType);
   
-  /*this.documentList.push({index: 0, 
-                          fileName: fileName, 
+  this.documentList.push({index: 3, 
+                          fileName: file?.name, 
                           fileType:  fileType}
-                         );*/
+                         );
 
 }
  

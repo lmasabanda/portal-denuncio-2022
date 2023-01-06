@@ -320,10 +320,12 @@
         <div class="title__document__charge">
           <p><span>Documentos cargados:</span></p>
           <ul class="list__documents__charge">
-            <li>Documento uno</li>
-            <li>Documento dos</li>
-            <li>Documento tres</li>
           </ul>
+          <ul  *ngFor="let file of documentList">
+            <li>
+                {{file.fileName}}  
+            </li>
+        </ul>
         </div>
         <div class="content__crear__denuncio__item__buttons" style="margin-bottom: 10rem;">
           <a [routerLink]="['.']" class="button-secondary" fragment="step4" (click)="backStep('item__inactive__5', 'number__5', 'number__box__5', 'number__title__5')">VOLVER</a>
