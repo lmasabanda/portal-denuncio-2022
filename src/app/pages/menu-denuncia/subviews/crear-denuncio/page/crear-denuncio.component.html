@@ -234,8 +234,8 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__one" (change)="onFileSelectedOne()">
-              <label for="file__one">Subir archivo</label>
+              <input type="file" name="" id="file__one" (change)="onFileSelectedOne()" accept="application/pdf, image/jpg">
+              <label for="file__one">{{this.placeholder_file_one}}</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
@@ -247,8 +247,8 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__two" (change)="onFileSelectedTwo()">
-              <label for="file__two">Subir archivo</label>
+              <input type="file" name="" id="file__two" (change)="onFileSelectedTwo()" accept="application/pdf, image/jpg">
+              <label for="file__two">{{this.placeholder_file_two}}</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
@@ -260,8 +260,8 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="" id="file__tree" (change)="onFileSelectedTree()">
-              <label for="file__tree">Subir archivo</label>
+              <input type="file" name="" id="file__tree" (change)="onFileSelectedTree()" accept="application/pdf, image/jpg">
+              <label for="file__tree">{{this.placeholder_file_tree}}</label>
             </div>
           </div>
           <div class="content__crear__denuncio__item__form__document">
@@ -273,8 +273,8 @@
               <p>Más información</p>
             </div>
             <div class="input__file">
-              <input type="file" name="file__four" id="file__four" (change)="onFileSelectedFour()">
-              <label for="file__four">Subir archivo</label>
+              <input type="file" name="file__four" id="file__four" (change)="onFileSelectedFour()" accept="application/pdf, image/jpg">
+              <label for="file__four">{{this.placeholder_file_four}}</label>
             </div>
           </div>
         </main>

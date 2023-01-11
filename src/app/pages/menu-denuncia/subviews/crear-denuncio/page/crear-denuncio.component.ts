@@ -35,6 +35,10 @@ export class CrearDenuncioComponent implements OnInit {
   inputPolicies: RequestPolicies = {} as RequestPolicies;
   ListCoverages: Coverages[] = [];
   inputCoverages: RequestCoverages = {} as RequestCoverages;
+  placeholder_file_one = 'Subir archivo';
+  placeholder_file_two =  'Subir archivo';
+  placeholder_file_tree = 'Subir archivo';
+  placeholder_file_four = 'Subir archivo';
 
   constructor(
     private router: Router, 
@@ -385,59 +389,105 @@ export class CrearDenuncioComponent implements OnInit {
   onFileSelectedOne(){
     const input = document.getElementById('file__one') as HTMLInputElement; 
     const file = input.files?.[0];
+    const fileName = file?.name;
     const fileType = file?.type;
-  
-    console.log(file?.name);
-    console.log(fileType);
-    
+    const fileSize = file?.size;
+
+    const fileSizeKb = (fileSize !== undefined) ?  Math.round(fileSize / 1024) : 0;
+
+    console.log ('Name: ' + fileName + "\n" + 
+    'Type: ' + fileType + "\n" +
+    'Size: ' + fileSizeKb + " KB");
+
+  if (fileSizeKb > environment.MAX_FILE_SIZE_KB ){
+    alert("Advertencia! El archivo cargado " +fileName + "excede el tamaño maximo permitido de " +
+    environment.MAX_FILE_SIZE_MB + " " + environment.EXTENSION_FILE);
+  } else {
+    this.placeholder_file_one = file != null ? file.name : "";
     this.documentList.push({index: 0, 
-                            fileName: file?.name, 
-                            fileType:  fileType}
-                           );
+      fileName: fileName, 
+      fileType:  fileType}
+     );
+  } 
 }
 
 onFileSelectedTwo(){
   const input = document.getElementById('file__two') as HTMLInputElement; 
   const file = input.files?.[0];
+  const fileName = file?.name;
   const fileType = file?.type;
+  const fileSize = file?.size;
+
+  const fileSizeKb = (fileSize !== undefined) ?  Math.round(fileSize / 1024) : 0;
   
-  console.log(file?.name);
-  console.log(fileType);
+  console.log ('Name: ' + fileName + "\n" + 
+    'Type: ' + fileType + "\n" +
+    'Size: ' + fileSizeKb + " KB");
+
+    if (fileSizeKb > environment.MAX_FILE_SIZE_KB ){
+      alert("Advertencia! El archivo cargado " +fileName + "excede el tamaño maximo permitido de " +
+      environment.MAX_FILE_SIZE_MB + " " + environment.EXTENSION_FILE);
+    } else {
+      this.placeholder_file_two = file != null ? file.name : "";
   
-  this.documentList.push({index: 1, 
-                          fileName: file?.name, 
-                          fileType:  fileType}
-                         );
+      this.documentList.push({index: 1, 
+                              fileName: file?.name, 
+                              fileType:  fileType}
+                            );
+    }
 }
 
 onFileSelectedTree(){
 
   const input = document.getElementById('file__tree') as HTMLInputElement; 
   const file = input.files?.[0];
+  const fileName = file?.name;
   const fileType = file?.type;
+  const fileSize = file?.size;
   
-    console.log(file?.name);
-    console.log(fileType);
-    
+  const fileSizeKb = (fileSize !== undefined) ?  Math.round(fileSize / 1024) : 0;
+  
+  console.log ('Name: ' + fileName + "\n" + 
+    'Type: ' + fileType + "\n" +
+    'Size: ' + fileSizeKb + " KB");
+
+  if (fileSizeKb > environment.MAX_FILE_SIZE_KB ){
+    alert("Advertencia! El archivo cargado " +fileName + "excede el tamaño maximo permitido de " +
+    environment.MAX_FILE_SIZE_MB + " " + environment.EXTENSION_FILE);
+  } else {
+    this.placeholder_file_tree = file != null ? file.name : "";
     this.documentList.push({index: 2, 
                             fileName: file?.name, 
                             fileType:  fileType}
                            );
-  
+  }
 }
 
 onFileSelectedFour(){
   const input = document.getElementById('file__four') as HTMLInputElement; 
   const file = input.files?.[0];
+  const fileName = file?.name;
   const fileType = file?.type;
-
-  console.log(file?.name);
-  console.log(fileType);
+  const fileSize = file?.size;
   
-  this.documentList.push({index: 3, 
-                          fileName: file?.name, 
-                          fileType:  fileType}
-                         );
+  const fileSizeKb = (fileSize !== undefined) ?  Math.round(fileSize / 1024) : 0;
+  
+  console.log ('Name: ' + fileName + "\n" + 
+    'Type: ' + fileType + "\n" +
+    'Size: ' + fileSizeKb + " KB");
+
+    if (fileSizeKb > environment.MAX_FILE_SIZE_KB ){
+      alert("Advertencia! El archivo cargado " +fileName + "excede el tamaño maximo permitido de " +
+      environment.MAX_FILE_SIZE_MB + " " + environment.EXTENSION_FILE);
+    } else {
+      this.placeholder_file_four = file != null ? file.name : "";
+      this.documentList.push({index: 3, 
+        fileName: file?.name, 
+        fileType:  fileType}
+       );
+    }
+  
+
 
 }
  
